@@ -568,7 +568,7 @@ const AnimatedBackground = () => {
             setSplineApp(app);
             bypassLoading();
           }}
-          scene="/assets/skills-keyboard.spline"
+          scene="/assets/untitled3.spline"
         />
       </Suspense>
     </>

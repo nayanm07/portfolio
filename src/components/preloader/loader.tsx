@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { opacity, slideUp } from "./anim";
 import { usePreloader } from ".";
+import Image from "next/image";
 
 const steps = [
   "10%",
@@ -57,6 +58,28 @@ export default function Index() {
     },
   };
 
+  const logoAnimation = {
+    initial: { scale: 0.8, opacity: 0 },
+    animate: { 
+      scale: 1, 
+      opacity: 1,
+      transition: { duration: 0.6, ease: [0.6, 0, 0.2, 1] }
+    },
+    exit: { 
+      scale: 0.9, 
+      opacity: 0,
+      transition: { duration: 0.4, ease: [0.6, 0, 0.2, 1] }
+    }
+  };
+
+  const progressAnimation = {
+    initial: { width: 0 },
+    animate: { 
+      width: `${loadingPercent}%`,
+      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+    }
+  };
+
   return (
     <motion.div
       variants={slideUp}
@@ -66,9 +89,49 @@ export default function Index() {
     >
       {dimension.width > 0 && (
         <>
-          <motion.p variants={opacity} initial="initial" animate="enter">
-            {(loadingPercent - (loadingPercent % 5)).toFixed(0)} %
-          </motion.p>
+          <div className={styles.content}>
+            <motion.div 
+              className={styles.logoContainer}
+              variants={logoAnimation}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <Image
+                src="/assets/logo.png"
+                alt="Logo"
+                width={120}
+                height={120}
+                className={styles.logo}
+                priority
+              />
+            </motion.div>
+            
+            <motion.div 
+              className={styles.loadingContainer}
+              variants={opacity} 
+              initial="initial" 
+              animate="enter"
+            >
+              <div className={styles.percentageText}>
+                {(loadingPercent - (loadingPercent % 5)).toFixed(0)}%
+              </div>
+              
+              <div className={styles.progressBar}>
+                <motion.div 
+                  className={styles.progressFill}
+                  variants={progressAnimation}
+                  initial="initial"
+                  animate="animate"
+                />
+              </div>
+              
+              <div className={styles.loadingText}>
+                Loading your experience...
+              </div>
+            </motion.div>
+          </div>
+          
           <svg>
             <motion.path
               variants={curve}

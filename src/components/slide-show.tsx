@@ -17,7 +17,7 @@ import { Button } from "./ui/button";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
-const SlideShow = ({ images }: { images: string[] }) => {
+const SlideShow = ({ images }: { images: { image: string, title: string }[]  }) => {
   const [hovering, setHovering] = useState(false);
   return (
     <Splide
@@ -41,7 +41,7 @@ const SlideShow = ({ images }: { images: string[] }) => {
                 onMouseLeave={() => setHovering(false)}
               >
                 <Image
-                  src={image}
+                  src={image.image}
                   alt="screenshot"
                   width={1000}
                   height={1000}
@@ -64,11 +64,11 @@ const SlideShow = ({ images }: { images: string[] }) => {
                 <DialogHeader className="w-full">
                   {/* <DialogTitle>Are you absolutely sure?</DialogTitle> */}
                   <DialogDescription>
-                    {image.split("/").pop()}
+                    {image.title}
                   </DialogDescription>
                 </DialogHeader>
                 <Image
-                  src={image}
+                  src={image.image}
                   alt="screenshot"
                   width={1000}
                   height={1000}

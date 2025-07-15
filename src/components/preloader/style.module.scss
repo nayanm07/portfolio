@@ -2,14 +2,12 @@
   height: 100dvh;
   width: 100dvw;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding-inline: 60px;
-  padding-bottom: 30px;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   z-index: 99;
-  // TODO: Add a better color instead of just the background to make it pop more
-  background-color: hsl(var(--background));
+  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--background)) 100%);
+  
   svg {
     position: absolute;
     top: 0;
@@ -19,12 +17,189 @@
       fill: hsl(var(--background));
     }
   }
-  p {
-    display: flex;
-    color: hsl(var(--foreground));
-    font-size: 72px;
-    align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  z-index: 1;
+  position: relative;
+}
+
+.logoContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &::before {
+    content: '';
     position: absolute;
-    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(45deg, hsl(var(--primary)/0.1), hsl(var(--primary)/0.2));
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: -1;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    border: 2px solid hsl(var(--primary)/0.2);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+.logo {
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 300px;
+}
+
+.percentageText {
+  font-size: 3rem;
+  font-weight: 700;
+  color: hsl(var(--primary));
+  text-align: center;
+  background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--primary)/0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px hsl(var(--primary)/0.3);
+}
+
+.progressBar {
+  width: 280px;
+  height: 6px;
+  background: hsl(var(--muted));
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)/0.3), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary)/0.8));
+  border-radius: 3px;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    border-radius: 3px;
+  }
+}
+
+.loadingText {
+  font-size: 1rem;
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  letter-spacing: 0.5px;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .content {
+    gap: 1.5rem;
+  }
+  
+  .logoContainer {
+    &::before {
+      width: 120px;
+      height: 120px;
+    }
+    
+    &::after {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  .logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .percentageText {
+    font-size: 2.5rem;
+  }
+  
+  .progressBar {
+    width: 240px;
+  }
+  
+  .loadingContainer {
+    min-width: 250px;
   }
 }

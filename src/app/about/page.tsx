@@ -39,205 +39,72 @@ import { VscCode } from "react-icons/vsc";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { TbTerminal2 } from "react-icons/tb";
+import { SKILLS } from "@/data/constants";
 
 const CONTACT_LINKS = [
   {
     name: "Email",
-    content: "abhijitzende75@gmail",
-    href: "mailto:abhijitzende75@gmail.com",
+    content: "nayanmehta2004@gmail.com",
+    href: "mailto:nayanmehta2004@gmail.com",
     icon: <FaEnvelope height={"50px"} />,
   },
   {
     name: "Phone",
-    content: "1234567890",
-    href: "tel:8308509180",
+    content: "8118899048",
+    href: "tel:8118899048",
     icon: <FaPhone height={"50px"} />,
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/zende-abhijit/",
-    content: "/zende-abhijit",
+    href: "https://in.linkedin.com/in/nayan-mehta-6b3959300",
+    content: "/nayan-mehta",
     icon: <FaLinkedin height={"50px"} />,
   },
   {
     name: "GitHub",
-    href: "https://github.com/Abhiz2411",
-    content: "/naresh-khatri",
+    href: "https://github.com/nayanm07/nayanm07",
+    content: "/nayanm07",
     icon: <FaGithub height={"50px"} />,
   },
 ];
 
-const TOOLS = [
-  {
-    name: "JavaScript",
-    content: "JavaScript is a high-level, interpreted programming language",
-    icon: <SiJavascript size={"50px"} color={"#f0db4f"} />,
-    color: "#f0db4f",
-  },
-  {
-    name: "TypeScript",
-    content: "TypeScript is a superset of JavaScript that compiles to plain JS",
-    icon: <SiTypescript size={"50px"} color={"#007acc"} />,
-    color: "#007acc",
-  },
-  {
-    name: "HTML",
-    content: "Next.js is a React framework for production",
-    icon: <FaHtml5 size={"50px"} color="#e34c26" />,
-    color: "#e34c26",
-  },
-  {
-    name: "CSS",
-    content: "Next.js is a React framework for production",
-    icon: <FaCss3 size={"50px"} color="#563d7c" />,
-    color: "#563d7c",
-  },
-  {
-    name: "Nodejs",
-    content: "Next.js is a React framework for production",
-    icon: <FaNodeJs size={"50px"} color="#6cc24a" />,
-    color: "#6cc24a",
-  },
-  {
-    name: "React.js",
-    content: "Next.js is a React framework for production",
-    icon: <FaReact size={"50px"} color="#61dafb" />,
-    color: "#61dafb",
-  },
-  {
-    name: "Docker",
-    content: "Next.js is a React framework for production",
-    icon: <FaDocker size={"50px"} color="#2496ed" />,
-    color: "#2496ed",
-  },
-  {
-    name: "NginX",
-    content: "Next.js is a React framework for production",
-    icon: <DiNginx size={"50px"} color="#008000" />,
-    color: "#008000",
-  },
-  {
-    name: "Vue.js",
-    content: "Next.js is a React framework for production",
-    icon: <FaVuejs size={"50px"} color="#41b883" />,
-    color: "#41b883",
-  },
-  {
-    name: "Express.js",
-    content: "Next.js is a React framework for production",
-    icon: <SiExpress size={"50px"} color="#fff" />,
-    color: "#000000",
-  },
-  {
-    name: "PostgreSQL",
-    content: "Next.js is a React framework for production",
-    icon: <DiPostgresql size={"50px"} color="#336791" />,
-    color: "#336791",
-  },
-  {
-    name: "MongoDB",
-    content: "Next.js is a React framework for production",
-    icon: <DiMongodb size={"50px"} color="#4db33d" />,
-    color: "#4db33d",
-  },
-  {
-    name: "Tailwind CSS",
-    content: "Next.js is a React framework for production",
-    icon: <RiTailwindCssFill size={"50px"} color="#06b6d4" />,
-    color: "#06b6d4",
-  },
-  {
-    name: "Firebase",
-    content: "Next.js is a React framework for production",
-    icon: <RiFirebaseFill size={"50px"} color="#FFCA28" />,
-    color: "#FFCA28",
-  },
-  {
-    name: "Git",
-    content: "Next.js is a React framework for production",
-    icon: <FaGit size={"50px"} color="#f05032" />,
-    color: "#f05032",
-  },
-  {
-    name: "GitHub",
-    content: "Next.js is a React framework for production",
-    icon: <FaGithub size={"50px"} color="#fff" />,
-    color: "#000000",
-  },
-  {
-    name: "VS Code",
-    content: "Next.js is a React framework for production",
-    icon: <SiVisualstudiocode size={"50px"} color="#007acc" />,
-    color: "#007acc",
-  },
-  {
-    name: "VIM",
-    content: "Next.js is a React framework for production",
-    icon: <DiVim size={"50px"} color="#fff" />,
-    color: "#000000",
-  },
-  {
-    name: "Prettier",
-    content: "Next.js is a React framework for production",
-    icon: <SiPrettier size={"50px"} color="#f7b93c" />,
-    color: "#f7b93c",
-  },
-  {
-    name: "NPM",
-    content: "Next.js is a React framework for production",
-    icon: <DiNpm size={"50px"} color="#CB3837" />,
-    color: "#CB3837",
-  },
-  {
-    name: "Yarn",
-    content: "Next.js is a React framework for production",
-    icon: <FaYarn size={"50px"} color="#2C8EBB" />,
-    color: "#2C8EBB",
-  },
-  {
-    name: "Vercel",
-    content: "Next.js is a React framework for production",
-    icon: <SiVercel size={"50px"} color="#fff" />,
-    color: "#000000",
-  },
-  {
-    name: "Linux",
-    content: "Next.js is a React framework for production",
-    icon: <FaLinux size={"50px"} color="#fff" />,
-    color: "#000000",
-  },
-  {
-    name: "Kubuntu",
-    content: "Next.js is a React framework for production",
-    // give me correct color for  kubuntu
-    icon: <SiKubuntu size={"50px"} color="#0077C4" />,
-    color: "#000000",
-  },
-  {
-    name: "Terminal",
-    content: "Next.js is a React framework for production",
-    icon: <TbTerminal2 size={"50px"} color="#fff" />,
-    color: "#000000",
-  },
-  {
-    name: "AWS",
-    content: "Next.js is a React framework for production",
-    icon: <FaAws size={"50px"} color="#3f51b5" />,
-    color: "#000000",
-  },
-];
+const TOOLS = Object.values(SKILLS);
 
 function Page() {
   const [toolsLoaded, setToolsLoaded] = useState(false);
+
   useEffect(() => {
     setToolsLoaded(true);
   }, []);
+
+  // Responsive Splide options
+  const getSplideOptions = () => ({
+    type: "loop",
+    interval: 2000,
+    autoplay: true,
+    pagination: false,
+    speed: 2000,
+    perPage: 5,
+    perMove: 1,
+    rewind: true,
+    easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+    arrows: false,
+    breakpoints: {
+      768: {
+        perPage: 3,
+      },
+      480: {
+        perPage: 2,
+      },
+    },
+  });
+
   return (
-    <div className="container mx-auto px-4 md:px-[50px] xl:px-[200px] text-zinc-300 pt-20 pb-20">
-      <div className="flex flex-col lg:flex-row gap-5">
-        <aside className="w-full md:basis-1/4">
+    <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-[200px] text-zinc-300 pt-16 md:pt-20 pb-16 md:pb-20">
+      <div className="flex flex-col lg:flex-row gap-5 lg:gap-8">
+        <aside className="w-full lg:w-1/3 xl:w-1/3 lg:flex-shrink-0">
           <div
-            className="p-4 md:p-8 lg:p-10 rounded-2xl border-[.5px] border-zinc-600"
+            className="p-4 md:p-6 lg:p-8 xl:p-10 rounded-2xl border-[.5px] border-zinc-600"
             style={{
               backdropFilter: "blur(2px)",
             }}
@@ -245,25 +112,54 @@ function Page() {
             <div className="flex flex-row lg:flex-col items-center">
               <div className="flex justify-center items-center lg:w-full lg:aspect-square bg-zinc-800 rounded-xl lg:mb-5">
                 <img
-                  className="rounded-full p-4 lg:p-10 w-[100px] md:w-[150px] lg:w-[200px] aspect-square  bg-zinc-800"
+                  className="rounded-full p-3 md:p-4 lg:p-6 xl:p-10 w-[120px] sm:w-[150px] md:w-[180px] lg:w-full max-w-[300px] aspect-square bg-zinc-800"
                   alt="me"
                   src="/assets/me.jpg"
                 />
               </div>
-              <div className="flex flex-col gap-3 lg:items-center ml-10 md:ml-20 lg:ml-0">
-                <p className="text-center text-xl">Naresh Khatri</p>
-                <div className="text-xs bg-zinc-700 w-fit px-3 py-1 rounded-full">
-                  Web Developer
+              <div className="flex flex-col gap-2 md:gap-3 lg:items-center ml-4 sm:ml-6 md:ml-8 lg:ml-0">
+                <p className="text-center text-lg md:text-xl lg:text-2xl font-medium">
+                  Nayan Mehta
+                </p>
+                <div className="text-xs md:text-sm bg-zinc-700 w-fit px-2 md:px-3 py-1 rounded-full">
+                  App Developer
                 </div>
               </div>
             </div>
-            <div className="hidden lg:block">
-              <hr className="my-10 border-zinc-600" />
+
+            {/* Mobile Contact Links */}
+            <div className="md:hidden mt-6">
+              <div className="grid grid-cols-2 gap-3 w-full">
+                {CONTACT_LINKS.map((link) => (
+                  <a
+                    key={link.name}
+                    className="flex flex-col items-center justify-center p-3 border-zinc-700 bg-zinc-800 hover:border-zinc-600 border-[.5px] rounded-md transition-colors min-h-[80px] text-center"
+                    href={link.href}
+                  >
+                    <div className="w-6 h-6 mb-2 flex items-center justify-center text-zinc-300">
+                      {link.icon}
+                    </div>
+                    <div className="text-xs text-center w-full">
+                      <div className="font-medium text-zinc-200 mb-1">
+                        {link.name}
+                      </div>
+                      <div className="text-zinc-400 text-[10px] leading-tight break-words">
+                        {link.content}
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop Contact Links */}
+            <div className="hidden md:block">
+              <hr className="my-8 xl:my-10 border-zinc-600" />
               <ul className="flex flex-col gap-3">
                 {CONTACT_LINKS.map((link) => (
                   <li key={link.name}>
                     <a
-                      className="flex items-center px-3 gap-3 w-full h-12 border-zinc-700 bg-zinc-800 hover:border-zinc-600 border-[.5px] rounded-md "
+                      className="flex items-center px-3 gap-3 w-full h-12 border-zinc-700 bg-zinc-800 hover:border-zinc-600 border-[.5px] rounded-md transition-colors"
                       href={link.href}
                     >
                       <div className="w-8">{link.icon}</div>
@@ -280,84 +176,57 @@ function Page() {
             </div>
           </div>
         </aside>
-        <main className="basis-3/4 w-[500px]">
+
+        <main className="w-full lg:w-2/3 xl:w-3/4 lg:flex-shrink-0">
           <div
-            className="p-10 border-[.5px] rounded-md border-zinc-600"
+            className="p-4 md:p-6 lg:p-8 xl:p-10 border-[.5px] rounded-md border-zinc-600"
             style={{ backdropFilter: "blur(2px)" }}
           >
-            <h1 className="text-3xl mb-10 lg:md-20">About me</h1>
-            <p className="mb-10 text-roboto">
-              Hey there! I&apos;m Abhijit, a Comp. Sci. Engineer with 1.5 year experience in Devlopment, DevOps and 
-              Database management with hands-on experience in deploying & automating workflows, and 
-              collaborating with foreign clients. Strong analytical skills,effective communication,
-              and a team-oriented approach to driving process improvements and delivering results.
+            <h1 className="text-2xl md:text-3xl lg:text-4xl mb-6 md:mb-8 lg:mb-10 font-bold">
+              About me
+            </h1>
+            <p className="mb-8 md:mb-10 lg:mb-12 text-roboto text-sm md:text-base leading-relaxed">
+              Hi! I&apos;m Nayan, a React Native developer with 1 years of
+              experience building cross-platform mobile apps. I have a strong
+              background in development, DevOps, and database management, and
+              I&apos;m skilled at deploying and automating workflows. I&apos;ve
+              worked with international clients, and I bring strong
+              problem-solving skills, clear communication, and a collaborative
+              mindset to every project.
             </p>
-            <p className="mb-10">
-              When I&apos;m not coding, you can find me [Your
-              Interests/Hobbies], exploring new technologies, or sipping coffee
-              while brainstorming my next project.
-            </p>
-            <h1 className="text-3xl mb-10 lg:md-20">Stuff I use</h1>
+
+            <h1 className="text-2xl md:text-3xl lg:text-4xl mb-6 md:mb-8 lg:mb-10 font-bold">
+              Stuff I use
+            </h1>
             <div className="mb-5">
               {!toolsLoaded ? (
-                <p className="h-[100px]"></p>
+                <div className="h-[60px] md:h-[80px] lg:h-[100px] bg-zinc-800 rounded-md animate-pulse"></div>
               ) : (
-                <Splide
-                  options={{
-                    type: "loop",
-                    interval: 2000,
-                    autoplay: true,
-                    pagination: false,
-                    speed: 2000,
-                    perPage: 5,
-                    perMove: 1,
-                    rewind: true,
-                    easing: "cubic-bezier(0.25, 1, 0.5, 1)",
-                    arrows: false,
-                  }}
-                  aria-label="My Favorite Images"
-                >
-                  {TOOLS.reverse().map((tool) => (
-                    <SplideSlide key={tool.name}>
-                      <div
-                        key={tool.name}
-                        className="w-fit p-2 border-[.5px] border-zinc-600 rounded-md"
-                      >
-                        {tool.icon}
-                      </div>
-                    </SplideSlide>
-                  ))}
-                </Splide>
+                <div className="overflow-hidden">
+                  <Splide
+                    options={getSplideOptions()}
+                    aria-label="My Favorite Images"
+                  >
+                    {TOOLS.reverse().map((tool) => (
+                      <SplideSlide key={tool.name}>
+                        <div className="px-2">
+                          <div
+                            key={tool.name}
+                            className="w-fit p-2 md:p-3 border-[.5px] border-zinc-600 rounded-md hover:border-zinc-500 transition-colors mx-auto"
+                          >
+                            <img
+                              src={tool.icon}
+                              alt={tool.name}
+                              className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
+                            />
+                          </div>
+                        </div>
+                      </SplideSlide>
+                    ))}
+                  </Splide>
+                </div>
               )}
             </div>
-            {/* <div className="">
-              <Splide
-                options={{
-                  type: "loop",
-                  interval: 2000,
-                  autoplay: true,
-                  pagination: false,
-                  speed: 3000,
-                  perPage: 5,
-                  perMove: 1,
-                  rewind: true,
-                  easing: "cubic-bezier(0.25, 1, 0.5, 1)",
-                  arrows: false,
-                }}
-                aria-label="My Favorite Images"
-              >
-                {TOOLS.map((tool) => (
-                  <SplideSlide key={tool.name}>
-                    <div
-                      key={tool.name}
-                      className="w-fit p-2 border-[.5px] border-zinc-600 rounded-md"
-                    >
-                      {tool.icon}
-                    </div>
-                  </SplideSlide>
-                ))}
-              </Splide>
-            </div> */}
           </div>
         </main>
       </div>

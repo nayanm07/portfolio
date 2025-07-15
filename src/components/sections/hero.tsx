@@ -64,7 +64,7 @@ const HeroSection = () => {
                       side="top"
                       className="dark:bg-white dark:text-black"
                     >
-                      theres something waiting for you in devtools
+                     Nayan Mehta is a React Native Developer with a passion for creating user-friendly and efficient mobile applications.
                     </TooltipContent>
                   </Tooltip>
                 </BlurIn>
@@ -76,15 +76,13 @@ const HeroSection = () => {
                       "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
                     )}
                   >
-                    DevOps Enthusiast
+                    React Native Developer
                   </p>
                 </BlurIn>
               </div>
               <div className="mt-8 md:ml-2 flex flex-col gap-3">
                 <Link
-                  href={
-                    "https://drive.google.com/file/d/1vjtWfqYGMIMK_rlBnmDEpKco9MiEaQss/view"
-                  }
+                  href="/assets/Nayan-Resume.pdf"
                   target="_blank"
                   className="flex-1"
                 >
@@ -107,9 +105,9 @@ const HeroSection = () => {
                         </Button>
                       </Link>
                     </TooltipTrigger>
-                    <TooltipContent side="bottom">
+                    {/* <TooltipContent side="bottom">
                       <p>pls 🥹 🙏</p>
-                    </TooltipContent>
+                    </TooltipContent> */}
                   </Tooltip>
                   <Link
                     href={config.social.github}
@@ -126,13 +124,17 @@ const HeroSection = () => {
                     <Button variant={"outline"}>
                       <SiLinkedin size={24} />
                     </Button>
+
+                    
                   </Link>
                 </div>
               </div>
             </>
           )}
         </div>
-        <div className="grid col-span-1"></div>
+        <div className="grid col-span-1 md:block hidden">
+          <img src="/assets/hero-bg.svg" alt="hero"  className="w-[80%] h-[80%] object-contain mt-20" />
+        </div>
       </div>
       <div className="absolute bottom-10 left-[50%] translate-x-[-50%]">
         <ScrollDownIcon />

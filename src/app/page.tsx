@@ -14,13 +14,22 @@ function MainPage() {
     <>
       <SmoothScroll>
         <main className={cn("bg-slate-100 dark:bg-transparent")}>
-          <div className="top-0 z-0 fixed w-full h-screen">
+          {/* <div className="top-0 z-0 fixed w-full h-screen">
             <AnimatedBackground />
-          </div>
+          </div> */}
+
+          <video
+            autoPlay
+            muted
+            loop
+            className="rotate-180 absolute top-[-340px] left-0 w-full h-full object-cover -z-20 opacity-50"
+          >
+            <source src="/assets//videos/blackhole.webm" type="video/webm" />
+          </video>
           <HeroSection />
           <SkillsSection />
           <ProjectsSection />
-          <ContactSection />
+          {/* <ContactSection /> */}
         </main>
       </SmoothScroll>
     </>
