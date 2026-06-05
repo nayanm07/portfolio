@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Archivo_Black } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ElasticCursor from "@/components/ui/ElasticCursor";
 import Particles from "@/components/Particles";
@@ -46,9 +46,19 @@ export const metadata: Metadata = {
   },
 };
 
-const archivoBlack = Archivo_Black({
+// abcDiatype is licensed; Inter at 400/500/600 is the documented substitute.
+const inter = Inter({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -57,7 +67,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={[archivoBlack.className].join(" ")}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}
+    >
       <head>
         <Script
           defer

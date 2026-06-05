@@ -1,100 +1,260 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import projects, { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-const ProjectsSection = () => {
-  return (
-    <section id="projects" className="max-w-7xl mx-auto md:min-h-[130vh]">
-      <Link href={"#projects"}>
-        <h2
-          className={cn(
-            "bg-clip-text text-4xl text-center text-transparent md:text-7xl pt-16",
-            "bg-gradient-to-b from-black/80 to-black/50",
-            "dark:bg-gradient-to-b dark:from-white/80 dark:to-white/20 dark:bg-opacity-50 mb-16 mt-10"
-          )}
-        >
-          Projects
-        </h2>
-      </Link>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-    </section>
-  );
-};
+const pad = (n: number) => (n + 1).toString().padStart(2, "0");
 
-const ProjectCard = ({ project }: { project: Project }) => {
+/* Chromatic animated backdrop behind the centre mockup */
+const ChromaBackdrop = () => (
+  <>
+    <div
+      className="absolute inset-0 animate-chroma opacity-90"
+      style={{
+        backgroundImage:
+          "linear-gradient(120deg, #00d4ff, #0007cd, #1a26ff, #00d4ff, #7b3aed)",
+        backgroundSize: "200% 100%",
+      }}
+    />
+    <div
+      className="absolute inset-0 mix-blend-overlay opacity-30"
+      style={{
+        backgroundImage:
+          "repeating-linear-gradient(90deg, rgba(0,0,0,0.5) 0 3px, transparent 3px 14px)",
+      }}
+    />
+    <div className="absolute inset-0 bg-canvas-deep/20" />
+  </>
+);
+
+/* ── Right-hand detail copy for the active project ──────────────── */
+const Detail = ({ project, index }: { project: Project; index: number }) => (
+  <motion.div
+    key={project.id}
+    initial={{ y: "100%" }}
+    animate={{ y: "0%" }}
+    exit={{ y: "-100%" }}
+    transition={{ type: "spring", stiffness: 240, damping: 30 }}
+    className="absolute inset-0 flex flex-col justify-center"
+  >
+    <div className="font-mono text-xs text-muted-soft border border-hairline-strong w-fit px-2 py-1">
+      {pad(index)}
+    </div>
+    <h3 className="mt-5 text-3xl xl:text-4xl font-medium tracking-tight text-white">
+      {project.title}
+    </h3>
+    <p className="mt-3 text-sm text-body max-w-md">{project.category}</p>
+
+    <ul className="mt-6 space-y-3 max-w-md">
+      {project.intigrationTechnologies?.slice(0, 3).map((t, i) => (
+        <li key={i} className="flex gap-3 text-sm text-body">
+          <span className="mt-1 h-4 w-0.5 shrink-0 bg-primary-glow" />
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+
+    <Link
+      href={`/projects/${project.id}`}
+      className="mt-8 inline-flex w-fit items-center gap-2 border border-hairline-strong bg-transparent px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-body-strong transition-colors hover:bg-surface-elevated"
+    >
+      View Project <ArrowUpRight className="h-3.5 w-3.5" />
+    </Link>
+  </motion.div>
+);
+
+/* ── Desktop scroll-pinned showcase ─────────────────────────────── */
+const ScrollShowcase = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const n = projects.length;
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const i = Math.min(n - 1, Math.max(0, Math.floor(v * n)));
+    setActive(i);
+  });
+
+  const goTo = (i: number) => {
+    if (!ref.current) return;
+    const top = ref.current.offsetTop + i * window.innerHeight;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  const project = projects[active];
+
   return (
-    <div className="flex items-center justify-center p-2">
-      <Link href={`/projects/${project.id}`} className="block group">
-        <div className="relative w-[280px] sm:w-[320px] md:w-[380px] lg:w-[400px] h-auto rounded-2xl overflow-hidden cursor-pointer transform-gpu transition-all duration-500 ease-out group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-black/20 dark:group-hover:shadow-white/10">
-          {/* Background card with subtle border */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/40 to-white/20 dark:from-gray-900/80 dark:via-gray-800/40 dark:to-gray-900/20 backdrop-blur-sm border border-white/20 dark:border-gray-700/30 rounded-2xl" />
-          
-          {/* Main image container */}
-          <div className="relative" style={{ aspectRatio: "3/2" }}>
-            <Image
-              className="absolute top-0 left-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.08] group-hover:rotate-1"
-              src={project.src}
-              alt={project.title}
-              width={400}
-              height={267}
-            />
-            
-            {/* Animated border glow */}
-            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-sm" />
-          </div>
-          
-          {/* Enhanced gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 rounded-2xl" />
-          
-          {/* Content container */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 transform transition-all duration-500 ease-out group-hover:translate-y-[-4px]">
-            <div className="space-y-3">
-              {/* Title with improved typography */}
-              <h3 className="text-xl font-bold text-white leading-tight tracking-wide group-hover:text-blue-200 transition-colors duration-300">
-                {project.title}
-              </h3>
-              
-              {/* Category badge with glass effect */}
-              <div className="inline-flex items-center">
-                <span className="text-xs font-medium bg-white/20 backdrop-blur-md text-white border border-white/30 rounded-full px-3 py-1.5 shadow-lg group-hover:bg-white/30 group-hover:scale-105 transition-all duration-300">
-                  {project.category}
-                </span>
-              </div>
-            </div>
-          </div>
-          
-          {/* Enhanced hover overlay with animated elements */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out rounded-2xl">
-            <div className="flex items-center justify-center h-full">
-              <div className="transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out opacity-0 group-hover:opacity-100">
-                <div className="relative">
-                  {/* Animated background pulse */}
-                  <div className="absolute inset-0 bg-blue-500/30 rounded-full blur-xl animate-pulse" />
-                  
-                  {/* Main button */}
-                  <div className="relative text-white text-sm font-semibold bg-black/60 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center space-x-2 group-hover:scale-105">
-                    <span>View Project</span>
-                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
+    <div ref={ref} style={{ height: `${n * 100}vh` }} className="relative">
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-12 gap-6 px-6">
+          {/* Left nav */}
+          <nav className="col-span-3 flex flex-col justify-center">
+            <ul className="border-t border-hairline-strong">
+              {projects.map((p, i) => {
+                const on = i === active;
+                return (
+                  <li key={p.id} className="border-b border-hairline-strong">
+                    <button
+                      onClick={() => goTo(i)}
+                      className={cn(
+                        "group flex w-full items-center gap-3 px-3 py-3.5 text-left transition-colors",
+                        on ? "bg-surface" : "hover:bg-surface/40"
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "flex h-6 w-6 shrink-0 items-center justify-center font-mono text-[11px] transition-colors",
+                          on
+                            ? "bg-primary text-white"
+                            : "text-muted-soft border border-hairline"
+                        )}
+                      >
+                        {pad(i)}
+                      </span>
+                      <span
+                        className={cn(
+                          "font-mono text-[13px] uppercase tracking-wide truncate transition-colors",
+                          on ? "text-white" : "text-muted group-hover:text-body"
+                        )}
+                      >
+                        {p.title}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* Centre chromatic mockup — card deck (pop / push) */}
+          <div className="col-span-5 flex items-center justify-center">
+            <div className="relative aspect-[4/3] w-full overflow-hidden border border-hairline-strong">
+              <ChromaBackdrop />
+              <div className="absolute inset-0 p-8">
+                <div className="relative h-full w-full">
+                  {projects.map((p, i) => {
+                    const offset = i - active;
+                    const popped = offset < 0;
+                    const depth = Math.max(0, Math.min(offset, 3));
+                    return (
+                      <motion.div
+                        key={p.id}
+                        initial={false}
+                        animate={
+                          popped
+                            ? { y: "-130%", scale: 0.92, rotate: -6 }
+                            : {
+                                y: `${depth * 6}%`,
+                                scale: 1 - depth * 0.05,
+                                rotate: 0,
+                              }
+                        }
+                        transition={{ type: "spring", stiffness: 220, damping: 28 }}
+                        style={{ zIndex: popped ? 50 : 40 - depth }}
+                        className="absolute inset-0 flex items-center justify-center"
+                      >
+                        <div className="relative w-full overflow-hidden rounded-lg border border-white/15 bg-canvas-deep shadow-2xl">
+                          <Image
+                            src={p.src}
+                            alt={p.title}
+                            width={640}
+                            height={420}
+                            className="w-full h-auto"
+                          />
+                          {/* depth dimming for cards behind the top */}
+                          <div
+                            className="pointer-events-none absolute inset-0 bg-canvas-deep transition-opacity"
+                            style={{ opacity: depth * 0.18 }}
+                          />
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           </div>
-          
-          {/* Subtle corner accent */}
-          <div className="absolute top-4 right-4 w-2 h-2 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform scale-0 group-hover:scale-100" />
+
+          {/* Right detail — vertical push */}
+          <div className="col-span-4 relative overflow-hidden">
+            <AnimatePresence initial={false}>
+              <Detail key={project.id} project={project} index={active} />
+            </AnimatePresence>
+          </div>
         </div>
-      </Link>
+      </div>
     </div>
+  );
+};
+
+/* ── Mobile stacked fallback ────────────────────────────────────── */
+const MobileList = () => (
+  <div className="max-w-xl mx-auto px-4 flex flex-col gap-10">
+    {projects.map((project, index) => (
+      <Link key={project.id} href={`/projects/${project.id}`} className="group block">
+        <div className="relative aspect-[4/3] w-full overflow-hidden border border-hairline-strong">
+          <ChromaBackdrop />
+          <div className="absolute inset-0 flex items-center justify-center p-6">
+            <Image
+              src={project.src}
+              alt={project.title}
+              width={520}
+              height={340}
+              className="w-full h-auto rounded-lg border border-white/15 shadow-2xl"
+            />
+          </div>
+        </div>
+        <div className="mt-4 flex items-center gap-3">
+          <span className="font-mono text-[11px] text-muted-soft border border-hairline px-1.5 py-0.5">
+            {pad(index)}
+          </span>
+          <h3 className="text-xl font-medium text-white">{project.title}</h3>
+        </div>
+        <p className="mt-1 text-sm text-body">{project.category}</p>
+      </Link>
+    ))}
+  </div>
+);
+
+const ProjectsSection = () => {
+  return (
+    <section id="projects" className="relative w-full">
+      {/* Header */}
+      <div className="mx-auto max-w-7xl px-6 pt-20">
+        <span className="inline-flex items-center gap-2 border border-hairline-strong bg-surface-elevated/60 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-body-strong">
+          <span className="h-1.5 w-1.5 bg-primary-glow" />
+          Selected Work
+        </span>
+        <h2 className="mt-5 text-4xl md:text-6xl font-medium tracking-tight text-white">
+          Projects
+        </h2>
+        <p className="mt-3 max-w-xl text-sm md:text-base text-body">
+          {projects.length} shipped products — scroll to step through mobile
+          apps and multi-tenant SaaS backends.
+        </p>
+      </div>
+
+      {/* Desktop pinned showcase / mobile stack */}
+      <div className="hidden lg:block mt-6">
+        <ScrollShowcase />
+      </div>
+      <div className="lg:hidden mt-12 pb-12">
+        <MobileList />
+      </div>
+    </section>
   );
 };
 
