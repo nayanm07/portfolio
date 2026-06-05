@@ -74,33 +74,48 @@ export function ProjectDetailClient({ project }: ProjectDetailClientProps) {
             </div>
           </div>
 
-          {/* Project images - Main image on left, Device frame on right */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Main project image */}
-            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
+          {/* Project images - Main image on left, Device frame on right.
+              When a project has no demo video (e.g. backend projects), the
+              cover image spans the full width on its own. */}
+          {project.video ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              {/* Main project image */}
+              <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src={project.src}
+                  alt={project.title}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+
+              {/* Device frame on the right */}
+              <div className="flex justify-center">
+                <DeviceFrame className="w-[280px]">
+                  <video
+                    src={project.video}
+                    autoPlay
+                    muted
+                    loop
+                    className="w-full h-full object-cover"
+                  />
+                </DeviceFrame>
+              </div>
+            </div>
+          ) : (
+            <div className="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
               <Image
                 src={project.src}
                 alt={project.title}
-                width={800}
-                height={600}
+                width={1200}
+                height={800}
                 className="w-full h-auto"
                 priority
               />
             </div>
-
-            {/* Device frame on the right */}
-            <div className="flex justify-center">
-              <DeviceFrame className="w-[280px]">
-                <video
-                  src={project.video}
-                  autoPlay
-                  muted
-                  loop
-                  className="w-full h-full object-cover"
-                />
-              </DeviceFrame>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Skills section */}

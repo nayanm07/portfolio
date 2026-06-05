@@ -50,6 +50,16 @@ import {
   SiCoinbase,
   SiGoogleadsense,
   SiPaypal,
+  SiNestjs,
+  SiRedis,
+  SiMysql,
+  SiFastify,
+  SiSwagger,
+  SiAmazon,
+  SiWhatsapp,
+  SiOpenai,
+  SiKotlin,
+  SiSqlite,
 } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 import css from "styled-jsx/css";
@@ -403,6 +413,77 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <SiPaypal />,
   },
+
+  nestjs: {
+    title: "NestJS",
+    bg: "black",
+    fg: "white",
+    icon: <SiNestjs />,
+  },
+  redis: {
+    title: "Redis",
+    bg: "black",
+    fg: "white",
+    icon: <SiRedis />,
+  },
+  bullmq: {
+    title: "BullMQ",
+    bg: "black",
+    fg: "white",
+    icon: (
+      <span>
+        <strong>B</strong>
+      </span>
+    ),
+  },
+  mysql: {
+    title: "MySQL",
+    bg: "black",
+    fg: "white",
+    icon: <SiMysql />,
+  },
+  fastify: {
+    title: "Fastify",
+    bg: "black",
+    fg: "white",
+    icon: <SiFastify />,
+  },
+  swagger: {
+    title: "Swagger",
+    bg: "black",
+    fg: "white",
+    icon: <SiSwagger />,
+  },
+  aws: {
+    title: "AWS",
+    bg: "black",
+    fg: "white",
+    icon: <SiAmazon />,
+  },
+  whatsapp: {
+    title: "WhatsApp API",
+    bg: "black",
+    fg: "white",
+    icon: <SiWhatsapp />,
+  },
+  openaiAI: {
+    title: "OpenAI",
+    bg: "black",
+    fg: "white",
+    icon: <SiOpenai />,
+  },
+  kotlin: {
+    title: "Kotlin",
+    bg: "black",
+    fg: "white",
+    icon: <SiKotlin />,
+  },
+  sqlite: {
+    title: "SQLite",
+    bg: "black",
+    fg: "white",
+    icon: <SiSqlite />,
+  },
 };
 export type Project = {
 
@@ -422,6 +503,316 @@ export type Project = {
   intigrationTechnologies?: string[];
 };
 const projects: Project[] = [
+  // +AI Recruitment App
+  {
+    id: "gorec",
+    category: "AI Recruitment App",
+    title: "GORec",
+    src: "/assets/projects-screenshots/gorec/cover.svg",
+    screenshots: [],
+    intigrationTechnologies: [
+      "Real-time WebSocket streaming (auto-reconnect + token auth)",
+      "Deepgram speech-to-text voice-to-job extraction",
+      "Phone + OTP auth with Android SMS auto-retrieval",
+      "Redux Toolkit + RTK Query + redux-persist state",
+      "One-tap Excel export of shortlist decisions",
+      "Firebase Cloud Messaging + Notifee push notifications",
+    ],
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.reactNative,
+        PROJECT_SKILLS.redux,
+        PROJECT_SKILLS.rtk,
+        PROJECT_SKILLS.sockerio,
+        PROJECT_SKILLS.firebase,
+      ],
+      backend: [],
+    },
+    video: "",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            GORec is a cross-platform React Native (0.85 / React 19) recruitment
+            app that lets recruiters source, screen, and shortlist candidates
+            through a conversational AI assistant — including hands-free voice
+            commands that turn a spoken job brief into a structured search query.
+            <br />
+          </TypographyP>
+
+          <TypographyH3 className="my-4 mt-8">App Architecture Flow</TypographyH3>
+          <p className="font-mono mb-2">
+            1. Recruiter logs in with passwordless phone + OTP (Android SMS
+            auto-retrieval).
+            <br />
+            2. Recruiter chats with — or speaks to — an AI assistant describing
+            the role.
+            <br />
+            3. A real-time WebSocket pipeline streams AI job recommendations and
+            candidate cards live.
+            <br />
+            4. Voice briefs are transcribed (Deepgram) and parsed into structured
+            criteria (role, skills, experience, budget, location, notice period).
+            <br />
+            5. Recruiter shortlists candidates and exports decisions to Excel in
+            one tap.
+            <br />
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">
+            Intigration Technologies
+          </TypographyH3>
+          <p className="font-mono mb-2">
+            {this.intigrationTechnologies?.map((tech, index) => (
+              <p key={index} className="font-mono mb-2">
+                {index + 1}. {tech}
+              </p>
+            ))}
+          </p>
+
+          <ProjectsLinks live={this.live} repo={this.github} />
+        </div>
+      );
+    },
+  },
+
+  // +Healthcare SaaS Backend
+  {
+    id: "cliniccloud",
+    category: "Healthcare SaaS Backend",
+    title: "Clinic Cloud",
+    src: "/assets/projects-screenshots/cliniccloud/cover.svg",
+    screenshots: [],
+    intigrationTechnologies: [
+      "Header-based multi-tenant isolation (x-tenant-id)",
+      "ABDM / ABHA national digital health-records integration",
+      "Razorpay payments with webhook handling & invoice PDFs",
+      "Multi-language WhatsApp bot on BullMQ + Redis queues",
+      "Real-time appointment booking via Socket.IO",
+      "AWS S3 storage, EC2 deploy, GitHub Actions CI/CD, Nginx + HTTPS",
+    ],
+    skills: {
+      frontend: [],
+      backend: [
+        PROJECT_SKILLS.nestjs,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.postgres,
+        PROJECT_SKILLS.prisma,
+        PROJECT_SKILLS.redis,
+        PROJECT_SKILLS.bullmq,
+        PROJECT_SKILLS.sockerio,
+        PROJECT_SKILLS.razorpay,
+        PROJECT_SKILLS.whatsapp,
+        PROJECT_SKILLS.aws,
+        PROJECT_SKILLS.docker,
+        PROJECT_SKILLS.swagger,
+      ],
+    },
+    video: "",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            Clinic Cloud is a production multi-tenant healthcare SaaS backend
+            built on NestJS 10. A single deployment serves any number of clinics
+            (&quot;tenants&quot;) — each with isolated staff, doctors, patients,
+            appointments, billing, and compliance records — across 27+ feature
+            modules and an 80+ model Prisma schema.
+            <br />
+          </TypographyP>
+
+          <TypographyH3 className="my-4 mt-8">Core Capabilities</TypographyH3>
+          <p className="font-mono mb-2">
+            1. Multi-tenancy &amp; security — middleware-enforced tenant
+            isolation, JWT + OTP auth, and fine-grained role/permission RBAC.
+            <br />
+            2. Appointments — token-based slot allocation, holiday/leave
+            validation, and Socket.IO live updates (zero double-bookings in
+            production).
+            <br />
+            3. ABDM / ABHA — patient creation, scan-and-share consent flows, and
+            HIP bridge services for regulatory-compliant health records.
+            <br />
+            4. Billing — Razorpay payment links, webhook handling, and pdfmake
+            invoice generation stored on S3.
+            <br />
+            5. WhatsApp bot — multi-language onboarding, reminders, and payment
+            links backed by BullMQ queues on Redis.
+            <br />
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">
+            Intigration Technologies
+          </TypographyH3>
+          <p className="font-mono mb-2">
+            {this.intigrationTechnologies?.map((tech, index) => (
+              <p key={index} className="font-mono mb-2">
+                {index + 1}. {tech}
+              </p>
+            ))}
+          </p>
+
+          <ProjectsLinks live={this.live} repo={this.github} />
+        </div>
+      );
+    },
+  },
+
+  // +AI Voice-Interview SaaS Backend
+  {
+    id: "interviewai",
+    category: "AI Voice-Interview SaaS Backend",
+    title: "Interview AI",
+    src: "/assets/projects-screenshots/interviewai/cover.svg",
+    screenshots: [],
+    intigrationTechnologies: [
+      "DB-per-tenant isolation via AsyncLocalStorage + Prisma proxy",
+      "Control-plane DB with self-service tenant provisioning",
+      "OpenAI LLM evaluation, scoring & candidate summaries",
+      "Azure Document Intelligence OCR + Pinecone knowledge base",
+      "Retryable BullMQ workers for the full interview pipeline",
+      "Automated PDF reports + transactional emails",
+    ],
+    skills: {
+      frontend: [],
+      backend: [
+        PROJECT_SKILLS.nestjs,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.postgres,
+        PROJECT_SKILLS.prisma,
+        PROJECT_SKILLS.redis,
+        PROJECT_SKILLS.bullmq,
+        PROJECT_SKILLS.openaiAI,
+        PROJECT_SKILLS.sockerio,
+        PROJECT_SKILLS.aws,
+        PROJECT_SKILLS.swagger,
+      ],
+    },
+    video: "",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            Interview AI is a multi-tenant SaaS backend that lets universities run
+            AI-powered voice interviews for prospective students — handling
+            onboarding, document verification, the interview call, AI evaluation,
+            and reporting. Each client runs in its own database, governed by a
+            control-plane DB.
+            <br />
+          </TypographyP>
+
+          <TypographyH3 className="my-4 mt-8">End-to-End Flow</TypographyH3>
+          <p className="font-mono mb-2">
+            1. Platform owner provisions a tenant — auto-migrate DB + seed RBAC +
+            super-admin.
+            <br />
+            2. Every request routes to the correct tenant DB via a
+            TenantResolutionGuard (CLS + Prisma proxy).
+            <br />
+            3. Students upload documents → OCR (Azure) + AI summary jobs run on
+            BullMQ.
+            <br />
+            4. Provider webhooks update interview attempts and store transcript
+            turns.
+            <br />
+            5. An evaluation pipeline scores the interview (LLM), builds a PDF
+            report on S3, and emails the result.
+            <br />
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">
+            Intigration Technologies
+          </TypographyH3>
+          <p className="font-mono mb-2">
+            {this.intigrationTechnologies?.map((tech, index) => (
+              <p key={index} className="font-mono mb-2">
+                {index + 1}. {tech}
+              </p>
+            ))}
+          </p>
+
+          <ProjectsLinks live={this.live} repo={this.github} />
+        </div>
+      );
+    },
+  },
+
+  // +Open API for Batch Calling
+  {
+    id: "edysorvoice",
+    category: "Open API · Batch AI Voice Calling",
+    title: "Edysor Voice",
+    src: "/assets/projects-screenshots/edysorvoice/cover.svg",
+    screenshots: [],
+    intigrationTechnologies: [
+      "External-facing REST API (ElevenLabs-style), 23+ endpoints",
+      "API-key auth (generate / validate / revoke) at the gateway",
+      "Microservices: API Gateway, User, Call, Agent, Telephony",
+      "Scheduled Calls with timezone-aware dispatch",
+      "Thin wrapper reusing the existing campaign pipeline",
+      "Backward-compatible response shapes + Postman onboarding",
+    ],
+    skills: {
+      frontend: [],
+      backend: [
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.fastify,
+        PROJECT_SKILLS.mysql,
+        PROJECT_SKILLS.swagger,
+      ],
+    },
+    video: "",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            Edysor Voice is an external-facing REST API (similar to ElevenLabs)
+            that lets third-party developers trigger and monitor AI
+            voice-calling campaigns programmatically via API keys — 23+ endpoints
+            across agents, campaigns, conversations, scheduled calls, and
+            billing, built on a Node.js / TypeScript / Fastify microservices
+            backend.
+            <br />
+          </TypographyP>
+
+          <TypographyH3 className="my-4 mt-8">Design Highlights</TypographyH3>
+          <p className="font-mono mb-2">
+            1. Architected as a thin wrapper over the existing campaign pipeline
+            — reusing voice_campaigns tables instead of new infrastructure.
+            <br />
+            2. API-key authentication enforced by a gateway-level middleware
+            across all microservices.
+            <br />
+            3. Built the Scheduled Calls feature end-to-end (migration →
+            repository → service → controller → routes) with timezone-aware
+            dispatch.
+            <br />
+            4. Maintained backward-compatible response shapes so existing SaaS
+            clients integrated with zero breaking changes.
+            <br />
+            5. Delivered a Postman collection for external developer onboarding.
+            <br />
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">
+            Intigration Technologies
+          </TypographyH3>
+          <p className="font-mono mb-2">
+            {this.intigrationTechnologies?.map((tech, index) => (
+              <p key={index} className="font-mono mb-2">
+                {index + 1}. {tech}
+              </p>
+            ))}
+          </p>
+
+          <ProjectsLinks live={this.live} repo={this.github} />
+        </div>
+      );
+    },
+  },
+
   // +Food Delivery App
   {
     // 01. AI Docker file optimizer project

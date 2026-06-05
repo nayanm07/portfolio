@@ -121,8 +121,8 @@ function Page() {
                 <p className="text-center text-lg md:text-xl lg:text-2xl font-medium">
                   Nayan Mehta
                 </p>
-                <div className="text-xs md:text-sm bg-zinc-700 w-fit px-2 md:px-3 py-1 rounded-full">
-                  App Developer
+                <div className="text-xs md:text-sm bg-zinc-700 w-fit px-2 md:px-3 py-1 rounded-full text-center">
+                  Full-Stack Mobile Engineer
                 </div>
               </div>
             </div>
@@ -186,13 +186,15 @@ function Page() {
               About me
             </h1>
             <p className="mb-8 md:mb-10 lg:mb-12 text-roboto text-sm md:text-base leading-relaxed">
-              Hi! I&apos;m Nayan, a React Native developer with 1 years of
-              experience building cross-platform mobile apps. I have a strong
-              background in development, DevOps, and database management, and
-              I&apos;m skilled at deploying and automating workflows. I&apos;ve
-              worked with international clients, and I bring strong
-              problem-solving skills, clear communication, and a collaborative
-              mindset to every project.
+              Hi! I&apos;m Nayan, a Full-Stack Mobile Engineer with 2+ years of
+              experience shipping cross-platform React Native and native Android
+              (Kotlin) apps to the Google Play Store and Apple App Store. Beyond
+              the app layer I build NestJS / Node.js multi-tenant SaaS backends,
+              real-time WebSocket systems, BullMQ job queues, and PostgreSQL /
+              Prisma data models deployed on AWS. I&apos;m experienced in
+              offline-first architecture, AI/voice integrations, and
+              multi-gateway payments — and I bring strong problem-solving skills,
+              clear communication, and a collaborative mindset to every project.
             </p>
 
             <h1 className="text-2xl md:text-3xl lg:text-4xl mb-6 md:mb-8 lg:mb-10 font-bold">

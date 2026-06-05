@@ -1,9 +1,9 @@
 const config = {
-  title: "Nayan Mehta | React Native Developer",
+  title: "Nayan Mehta | Full-Stack Mobile Engineer",
   description: {
-    long: "Explore the portfolio of Abhijit, a Computer Science Engineer with 1.5 year experience in Devlopment, DevOps & Database management with hands-on experience in deploying & automating workflows, & collaborating with foreign clients. Strong analytical skills, effective communication, and a team-oriented approach to driving process improvements and delivering results.",
+    long: "Explore the portfolio of Nayan Mehta, a Full-Stack Mobile Engineer with 2+ years of experience shipping cross-platform React Native and native Android (Kotlin) apps to the Play Store and App Store, plus NestJS / Node.js multi-tenant SaaS backends, real-time WebSocket systems, BullMQ job queues, PostgreSQL/Prisma data models, and AWS deployment. Experienced in offline-first architecture, AI/voice integrations, and multi-gateway payments.",
     short:
-      "Discover the portfolio of Abhijit, a React Native Developer solving real life problems in DevOps and Development.",
+      "Discover the portfolio of Nayan Mehta, a Full-Stack Mobile Engineer building React Native & native Android apps and NestJS/Node.js SaaS backends.",
   },
   keywords: [
     "Nayan Mehta",
@@ -11,14 +11,17 @@ const config = {
     "nayanmehta2004@gmail.com",
     "Nayan Mehta portfolio",
     "portfolio",
+    "Full-Stack Mobile Engineer",
     "React Native",
+    "Kotlin",
+    "NestJS",
+    "Node.js",
+    "Multi-tenant SaaS",
     "Mobile App",
     "App Development",
     "Android App",
     "iOS App",
-    "creative",
-    "creative technologist",
-    "creative technologist",
+    "Backend Developer",
   ],
   author: "Nayan Mehta",
   email: "nayanmehta2004@gmail.com",

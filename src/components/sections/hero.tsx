@@ -64,7 +64,7 @@ const HeroSection = () => {
                       side="top"
                       className="dark:bg-white dark:text-black"
                     >
-                     Nayan Mehta is a React Native Developer with a passion for creating user-friendly and efficient mobile applications.
+                     Nayan Mehta is a Full-Stack Mobile Engineer building React Native &amp; native Android apps and NestJS/Node.js SaaS backends.
                     </TooltipContent>
                   </Tooltip>
                 </BlurIn>
@@ -76,7 +76,7 @@ const HeroSection = () => {
                       "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
                     )}
                   >
-                    React Native Developer
+                    Full-Stack Mobile Engineer
                   </p>
                 </BlurIn>
               </div>

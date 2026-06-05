@@ -237,6 +237,112 @@ using use = useUsing("use")`,
   },
 };
 
+// ───────────────────────────────────────────────────────────────────────────
+// Categorized skills — powers the redesigned Skills section.
+// (Kept separate from SKILLS above, which is keyed by SkillNames and drives the
+//  3D Spline keyboard + About carousel.)
+// ───────────────────────────────────────────────────────────────────────────
+const DEVICON = (path: string) =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}.svg`;
+const SIMPLE = (slug: string, color: string = "ffffff") =>
+  `https://cdn.simpleicons.org/${slug}/${color}`;
+const DASH = (slug: string) =>
+  `https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/${slug}.svg`;
+
+export type CategorizedSkill = {
+  label: string;
+  icon: string;
+  color: string;
+};
+
+export type SkillCategory = {
+  name: string;
+  tagline: string;
+  accent: string;
+  skills: CategorizedSkill[];
+};
+
+export const SKILL_CATEGORIES: SkillCategory[] = [
+  {
+    name: "Mobile",
+    tagline: "Cross-platform & native Android, shipped to both stores",
+    accent: "#38bdf8",
+    skills: [
+      { label: "React Native", icon: DEVICON("react/react-original"), color: "#61dafb" },
+      { label: "Kotlin", icon: DEVICON("kotlin/kotlin-original"), color: "#a97bff" },
+      { label: "TypeScript", icon: DEVICON("typescript/typescript-original"), color: "#3178c6" },
+      { label: "JavaScript", icon: DEVICON("javascript/javascript-original"), color: "#f7df1e" },
+      { label: "Redux Toolkit", icon: DEVICON("redux/redux-original"), color: "#764abc" },
+      { label: "React Navigation", icon: "https://reactnavigation.org/img/spiro.svg", color: "#6c47ff" },
+      { label: "Offline-first SQLite", icon: DEVICON("sqlite/sqlite-original"), color: "#0f80cc" },
+      { label: "Expo", icon: SIMPLE("expo"), color: "#ffffff" },
+    ],
+  },
+  {
+    name: "Backend",
+    tagline: "NestJS / Node.js APIs, multi-tenant SaaS & real-time systems",
+    accent: "#34d399",
+    skills: [
+      { label: "NestJS", icon: DEVICON("nestjs/nestjs-original"), color: "#e0234e" },
+      { label: "Node.js", icon: DEVICON("nodejs/nodejs-original"), color: "#6cc24a" },
+      { label: "Express", icon: SIMPLE("express"), color: "#ffffff" },
+      { label: "Fastify", icon: SIMPLE("fastify"), color: "#ffffff" },
+      { label: "PostgreSQL", icon: DEVICON("postgresql/postgresql-original"), color: "#4d9fd6" },
+      { label: "MySQL", icon: DEVICON("mysql/mysql-original"), color: "#4479a1" },
+      { label: "MongoDB", icon: DEVICON("mongodb/mongodb-original"), color: "#47a248" },
+      { label: "Prisma", icon: SIMPLE("prisma"), color: "#ffffff" },
+      { label: "Redis", icon: DEVICON("redis/redis-original"), color: "#d82c20" },
+      { label: "Socket.IO", icon: SIMPLE("socketdotio"), color: "#ffffff" },
+      { label: "BullMQ", icon: SIMPLE("redis", "ff4438"), color: "#ff4438" },
+      { label: "Swagger", icon: DEVICON("swagger/swagger-original"), color: "#85ea2d" },
+      { label: "JWT & RBAC", icon: SIMPLE("jsonwebtokens"), color: "#ffffff" },
+    ],
+  },
+  {
+    name: "AI & Integrations",
+    tagline: "Voice, LLMs, payments & messaging woven into products",
+    accent: "#a78bfa",
+    skills: [
+      { label: "OpenAI", icon: "/assets/icons/openai-svgrepo-com_white.svg", color: "#ffffff" },
+      { label: "Deepgram", icon: SIMPLE("deepgram", "13ef93"), color: "#13ef93" },
+      { label: "Firebase", icon: DEVICON("firebase/firebase-plain"), color: "#ffca28" },
+      { label: "WhatsApp API", icon: SIMPLE("whatsapp", "25d366"), color: "#25d366" },
+      { label: "Stripe", icon: SIMPLE("stripe", "635bff"), color: "#635bff" },
+      { label: "Razorpay", icon: SIMPLE("razorpay", "3395ff"), color: "#3395ff" },
+      { label: "PayPal", icon: SIMPLE("paypal", "0070ba"), color: "#0070ba" },
+      { label: "Coinbase", icon: SIMPLE("coinbase", "0052ff"), color: "#0052ff" },
+      { label: "Google Maps", icon: SIMPLE("googlemaps", "4285f4"), color: "#4285f4" },
+      { label: "AdMob", icon: DASH("google-admob"), color: "#ea4335" },
+    ],
+  },
+  {
+    name: "Cloud & DevOps",
+    tagline: "Dockerized deploys, CI/CD and HTTPS on AWS",
+    accent: "#fbbf24",
+    skills: [
+      { label: "AWS", icon: DASH("aws"), color: "#ff9900" },
+      { label: "Docker", icon: DEVICON("docker/docker-original"), color: "#2496ed" },
+      { label: "Nginx", icon: DEVICON("nginx/nginx-original"), color: "#009639" },
+      { label: "GitHub Actions", icon: SIMPLE("githubactions", "2088ff"), color: "#2088ff" },
+      { label: "Git", icon: DEVICON("git/git-original"), color: "#f05032" },
+      { label: "GitHub", icon: DASH("github-light"), color: "#ffffff" },
+    ],
+  },
+  {
+    name: "Testing & Tools",
+    tagline: "Quality, OCR and the kit I build with day to day",
+    accent: "#fb7185",
+    skills: [
+      { label: "Jest", icon: DEVICON("jest/jest-plain"), color: "#c21325" },
+      { label: "Postman", icon: DEVICON("postman/postman-original"), color: "#ff6c37" },
+      { label: "Azure Doc AI", icon: DEVICON("azure/azure-original"), color: "#0078d4" },
+      { label: "Android Studio", icon: DEVICON("androidstudio/androidstudio-original"), color: "#3ddc84" },
+      { label: "Xcode", icon: DEVICON("xcode/xcode-original"), color: "#1575f9" },
+      { label: "Bitbucket", icon: DEVICON("bitbucket/bitbucket-original"), color: "#0052cc" },
+    ],
+  },
+];
+
 export const themeDisclaimers = {
   light: [
     "Warning: Light mode emits a gazillion lumens of pure radiance!",
