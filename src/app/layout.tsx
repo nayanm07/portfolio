@@ -85,11 +85,11 @@ export default function RootLayout({
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <Particles
+          {/* <Particles
             className="fixed inset-0 -z-10 animate-fade-in"
             quantity={100}
-          />
-          <Preloader>
+          /> */}
+        <Preloader>
             {/* <SocketContextProvider> */}
               <RemoteCursors />
               <TooltipProvider>
@@ -100,7 +100,7 @@ export default function RootLayout({
             {/* </SocketContextProvider> */}
             <Toaster />
             <EasterEggs />
-            <ElasticCursor />
+            {/* <ElasticCursor /> */}
           </Preloader>
         </ThemeProvider>
       </body>
