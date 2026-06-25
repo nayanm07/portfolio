@@ -14,6 +14,7 @@ import { SKILL_CATEGORIES } from "@/data/constants";
 
 const ICONS = SKILL_CATEGORIES.flatMap((c) => c.skills).map((s) => s.icon);
 
+
 const label =
   "text-[10px] font-mono uppercase tracking-[0.16em] text-muted-soft";
 
@@ -107,10 +108,10 @@ const AgentBand = () => {
               <div className="mt-3 mb-3 flex items-center gap-2 border border-hairline bg-white/[0.03] px-2.5 py-1.5">
                 <svg className="h-3 w-3 shrink-0 text-muted-soft" fill="none" viewBox="0 0 12 12"><circle cx="5.25" cy="5.25" r="3.75" stroke="currentColor" strokeWidth="1" /><path d="M8 8l2.5 2.5" stroke="currentColor" strokeLinecap="round" strokeWidth="1" /></svg>
                 <span className="truncate text-[11px] text-muted">
-                  build apps · ship APIs · deploy
+                  mobile apps · backend systems · AI integrations
                 </span>
                 <span className="ml-auto shrink-0 text-[10px] text-muted-soft">
-                  43 found
+                  60+ skills
                 </span>
               </div>
               <ToolMarquee />
@@ -137,29 +138,28 @@ const AgentBand = () => {
             <div className="flex items-center justify-center gap-2 py-3.5 border-b border-hairline">
               <span className="text-primary-glow text-[14px]">✦</span>
               <span className="text-[13px] font-medium text-body-strong">
-                Nayan{" "}
-                <span className="font-normal text-muted-soft">Agent</span>
+                Nayan <span className="font-normal text-muted-soft">Stack Agent</span>
               </span>
             </div>
 
             <div className="flex flex-1 flex-col gap-4 px-5 pt-5 pb-3 min-h-[300px]">
               <div className="flex justify-end">
                 <div className="max-w-[85%] rounded-xl bg-surface-elevated px-4 py-2.5 text-[13px] leading-relaxed text-body">
-                  Summarize today&apos;s clinic bookings and send a WhatsApp
-                  digest to the front desk.
+                  Build a production multi-tenant platform with React Native,
+                  NestJS, AI workflows, and payment integrations.
                 </div>
               </div>
 
               <div className="text-[12px] uppercase tracking-wide text-muted-soft">
-                NAYAN SEARCH TOOLS
+                MOBILE: React Native · Kotlin · TypeScript · RTK Query
               </div>
               <div className="text-[12px] uppercase tracking-wide text-muted-soft">
-                CLINIC-CLOUD · RESOLVE TENANT
+                BACKEND: NestJS · Prisma · Redis · BullMQ · Socket.IO
               </div>
 
               <div className="text-[14px] leading-relaxed text-body-strong">
-                42 appointments today across 6 doctors. Digest sent to 3 staff
-                on WhatsApp — no failures. ✅
+                Shipping cross-platform products with offline-first flows,
+                role-based security, AI copilots, and AWS CI/CD pipelines. ✅
               </div>
             </div>
 
@@ -169,7 +169,7 @@ const AgentBand = () => {
                 <div className="flex items-center justify-between">
                   <svg className="h-[18px] w-[18px] text-muted-soft" fill="none" viewBox="0 0 18 18"><path d="M9 1.5v15M1.5 9h15" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" /></svg>
                   <div className="flex items-center gap-2.5">
-                    <span className="text-[12px] text-muted-soft">NestJS</span>
+                    <span className="text-[12px] text-muted-soft">RTK Query</span>
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary">
                       <svg className="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 14 14"><path d="M7 12V2M7 2L3 6M7 2l4 4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" /></svg>
                     </span>
@@ -186,12 +186,13 @@ const AgentBand = () => {
             <Panel delay={0.3}>
               <div className={label}>MANAGE_CONNECTIONS</div>
               <div className="mt-2 mb-3 text-[10px] text-muted-soft">
-                USER_ID: usr_n4y4n
+                PROFILE: nayan.fullstack.mobile
               </div>
               <div className="flex flex-col gap-2">
                 {[
-                  { name: "Razorpay", meta: "OAuth 2.0" },
-                  { name: "WhatsApp Cloud", meta: "API Key" },
+                  { name: "OpenAI + Pinecone", meta: "AI / Vector" },
+                  { name: "WhatsApp Cloud API", meta: "Messaging" },
+                  { name: "Google Maps SDK", meta: "Location" },
                 ].map((c) => (
                   <div
                     key={c.name}
@@ -217,43 +218,25 @@ const AgentBand = () => {
             <Panel delay={0.4}>
               <div className="flex items-center justify-between">
                 <span className={label}>EXECUTE_TOOL</span>
-                <span className="text-[10px] text-muted-soft">SESSION: —</span>
+                <span className="text-[10px] text-muted-soft">SESSION: stack-sync</span>
               </div>
               <div className="mt-3 flex items-center gap-2 border border-hairline bg-white/[0.03] px-2.5 py-2">
                 <span className="text-primary-glow text-[12px]">▣</span>
-                <span className="text-[12px] text-body">APPOINTMENT_CREATE</span>
+                <span className="text-[12px] text-body">TENANT_BOOTSTRAP_PIPELINE</span>
               </div>
               <div className="mt-2 flex items-center justify-between text-[10px]">
                 <span className="text-muted-soft">db</span>
-                <span className="text-body">Appointments</span>
+                <span className="text-body">PostgreSQL + Prisma</span>
               </div>
               <div className="flex items-center justify-between text-[10px]">
-                <span className="text-muted-soft">token</span>
-                <span className="text-body">#A-014 · 10:00 AM</span>
+                <span className="text-muted-soft">queue</span>
+                <span className="text-body">BullMQ · Redis · Worker ready</span>
               </div>
               <div className="mt-2.5 text-[10px] text-success">
-                ✓ 201 OK · appointment booked
+                ✓ 200 OK · mobile + backend + ai + payments synced
               </div>
             </Panel>
 
-            <Panel delay={0.5}>
-              <div className={label}>AGENT_CONFIG</div>
-              <div className="mt-3 flex flex-col gap-2.5">
-                {[
-                  ["AGENT", "Nayan Agent"],
-                  ["STACK", "NestJS · React Native"],
-                  ["DATABASE", "PostgreSQL · Prisma"],
-                ].map(([k, v]) => (
-                  <div
-                    key={k}
-                    className="flex items-center justify-between border-b border-hairline pb-2 last:border-0 last:pb-0"
-                  >
-                    <span className="text-[10px] text-muted-soft">{k}</span>
-                    <span className="text-[12px] text-body-strong">{v}</span>
-                  </div>
-                ))}
-              </div>
-            </Panel>
           </div>
         </div>
 
@@ -262,13 +245,21 @@ const AgentBand = () => {
           <div className="flex items-center justify-between">
             <span className={label}>NAYAN_SANDBOX</span>
             <span className="text-[10px] text-muted-soft">
-              ● sandbox · node 20 · aws
+              ● sandbox · node 20 · react-native · aws
             </span>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-3">
             {[
-              ["instance-0", "$ docker compose up -d", "✓ nestjs :3000 · redis · postgres healthy"],
-              ["instance-1", "$ gh workflow run deploy", "✓ ec2 · nginx + lets-encrypt https live"],
+              [
+                "instance-0",
+                "$ docker compose up -d api redis postgres",
+                "✓ nestjs :3000 · redis · postgres · socket gateway healthy",
+              ],
+              [
+                "instance-1",
+                "$ gh workflow run mobile-release",
+                "✓ ci/cd passed · play console + app store connect ready",
+              ],
             ].map(([inst, cmd, out], i) => (
               <div
                 key={i}

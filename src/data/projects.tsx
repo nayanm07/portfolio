@@ -509,6 +509,7 @@ const projects: Project[] = [
     category: "AI Recruitment App",
     title: "GORec",
     src: "/assets/projects-screenshots/gorec/cover.svg",
+    
     screenshots: [],
     intigrationTechnologies: [
       "Real-time WebSocket streaming (auto-reconnect + token auth)",
@@ -529,7 +530,7 @@ const projects: Project[] = [
       ],
       backend: [],
     },
-    video: "",
+    video: "/assets/projects-screenshots/gorec/gorec.mp4",
     get content() {
       return (
         <div>
@@ -557,6 +558,115 @@ const projects: Project[] = [
             <br />
             5. Recruiter shortlists candidates and exports decisions to Excel in
             one tap.
+            <br />
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">
+            Intigration Technologies
+          </TypographyH3>
+          <p className="font-mono mb-2">
+            {this.intigrationTechnologies?.map((tech, index) => (
+              <p key={index} className="font-mono mb-2">
+                {index + 1}. {tech}
+              </p>
+            ))}
+          </p>
+
+          <ProjectsLinks live={this.live} repo={this.github} />
+        </div>
+      );
+    },
+  },
+
+  // +B2C CRM Mobile App
+  {
+    id: "b2ccrmarm",
+    category: "B2C CRM Mobile App",
+    title: "B2C CRM ARM",
+    src: "/assets/projects-screenshots/b2ccrmarm/cover.svg",
+    screenshots: [],
+    intigrationTechnologies: [
+      "One-tap click-to-call sync between web dashboard and mobile app",
+      "Smart follow-up reminders with quick actions (call, complete, snooze)",
+      "Auto call recording with AI sentiment and quality insights",
+      "Floating real-time lead context overlay during incoming/outgoing calls",
+      "Role-based access with instant multi-team switching",
+      "Real-time lead, application, and call analytics dashboards",
+      "End-to-end lead, follow-up, and application stage lifecycle management",
+      "Student self-service portal with AI counsellor and personalized suggestions",
+    ],
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.reactNative,
+        PROJECT_SKILLS.redux,
+        PROJECT_SKILLS.rtk,
+        PROJECT_SKILLS.firebase,
+        PROJECT_SKILLS.sockerio,
+      ],
+      backend: [
+        PROJECT_SKILLS.nestjs,
+        PROJECT_SKILLS.postgres,
+        PROJECT_SKILLS.prisma,
+        PROJECT_SKILLS.redis,
+        PROJECT_SKILLS.whatsapp,
+        PROJECT_SKILLS.openaiAI,
+      ],
+    },
+    video: "/assets/projects-screenshots/b2ccrmarm/crm.mp4",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono ">
+            B2C CRM ARM is an all-in-one Android and iOS CRM app for study
+            abroad and immigration consultancies. It enables counsellors,
+            agents, and managers to manage leads, follow-ups, applications, and
+            student communication in real time from mobile.
+            <br />
+          </TypographyP>
+
+          <TypographyH3 className="my-4 mt-8">Core Features</TypographyH3>
+          <p className="font-mono mb-2">
+            1. One-tap click-to-call from web dashboard to mobile dialer with
+            automatic lead activity logging.
+            <br />
+            2. Follow-up reminder notifications with direct actions: call,
+            complete, snooze, and open profile.
+            <br />
+            3. Automatic call recording and sentiment analysis (mood detection,
+            topic extraction, talk-time split, silence detection, and next
+            action suggestions).
+            <br />
+            4. Real-time floating lead panel during calls showing profile,
+            status, priority, service, assignee, and stage.
+            <br />
+            5. Multi-role login (Super Admin, Admin, Team Lead,
+            Counsellor/Agent, Visa Officer, Finance Officer) with live team
+            switching.
+            <br />
+            6. Analytics dashboard for lead funnel, applications, and call
+            performance with date and team filters.
+            <br />
+            7. Full lead, follow-up, and application lifecycle management from
+            enquiry to visa-approved and enrolled.
+            <br />
+            8. Student self-service portal with university matching, one-tap
+            application, live status timeline, and 24/7 AI counsellor support.
+            <br />
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">Business Impact</TypographyH3>
+          <p className="font-mono mb-2">
+            1. Automatic lead capture ensures no inbound opportunity is missed.
+            <br />
+            2. Better call preparedness improves conversion from first contact.
+            <br />
+            3. AI-driven coaching insights improve team performance quality.
+            <br />
+            4. Live analytics enable data-driven staffing and target-market
+            decisions.
+            <br />
+            5. Student-facing AI support provides consistent 24/7 engagement.
             <br />
           </p>
 
