@@ -1045,10 +1045,10 @@ const projects: Project[] = [
       backend: [],
     },
     video: "/assets/projects-screenshots/elpico/elpico.mp4",
-    // playStore: "https://play.google.com/store/apps/details?id=com.supraa",
+    playStore: "https://play.google.com/store/apps/details?id=ai.metastart.elpico",
     // appStore: "https://apps.apple.com/in/app/supraa/id6743932127",
-    apkDownload:
-      "https://www.dropbox.com/scl/fi/uxqj90fnwvu6fgafx9hsg/Elpico.apk?rlkey=14juza0qcjjrcxnafsam02cln&st=veo2ueof&dl=0",
+    // apkDownload:
+    //   "https://www.dropbox.com/scl/fi/uxqj90fnwvu6fgafx9hsg/Elpico.apk?rlkey=14juza0qcjjrcxnafsam02cln&st=veo2ueof&dl=0",
 
     get content() {
       return (
@@ -1141,10 +1141,10 @@ const projects: Project[] = [
       backend: [],
     },
     video: "/assets/projects-screenshots/myflama/MyFlama.mp4",
-    // playStore: "https://play.google.com/store/apps/details?id=com.supraa",
-    // appStore: "https://apps.apple.com/in/app/supraa/id6743932127",
-    apkDownload:
-      "https://www.dropbox.com/scl/fi/odx7cl2effd51qjlks2h7/MyFlama.apk?rlkey=lybny6zj36baodn8z5g6fiyyh&st=5axgeq64&dl=0",
+    playStore: "https://play.google.com/store/apps/details?id=com.myflama.myflamaapp&hl=en_IN",
+    appStore: "https://apps.apple.com/in/app/myflama/id6749509768",
+    // apkDownload:
+    //   "https://www.dropbox.com/scl/fi/odx7cl2effd51qjlks2h7/MyFlama.apk?rlkey=lybny6zj36baodn8z5g6fiyyh&st=5axgeq64&dl=0",
 
     get content() {
       return (
