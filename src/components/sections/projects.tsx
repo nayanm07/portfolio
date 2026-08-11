@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import projects, { Project } from "@/data/projects";
 import { ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const pad = (n: number) => (n + 1).toString().padStart(2, "0");
 
@@ -30,10 +31,15 @@ const ChromaBackdrop = () => (
 );
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+  const featured = [0, 3, 7].includes(index);
+
   return (
-    <Link href={`/projects/${project.id}`} className="group block">
+    <Link
+      href={`/projects/${project.id}`}
+      className={cn("group block xl:col-span-2", featured && "xl:col-span-4")}
+    >
       <article className="h-full overflow-hidden border border-hairline-strong bg-surface/30 transition-transform duration-300 hover:-translate-y-1">
-        <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-hairline-strong">
+        <div className={cn("relative w-full overflow-hidden border-b border-hairline-strong", featured ? "aspect-[16/9]" : "aspect-[4/3]")}>
           <ChromaBackdrop />
           <div className="absolute inset-0 p-4">
             <div className="relative h-full w-full overflow-hidden rounded-lg border border-white/15 bg-canvas-deep shadow-2xl">
@@ -103,7 +109,7 @@ const ProjectsSection = () => {
       </div>
 
       {/* Grid layout */}
-      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-6 px-6 pb-14 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-5 px-6 pb-14 sm:grid-cols-2 xl:grid-cols-6 xl:grid-flow-dense">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}

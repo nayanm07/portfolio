@@ -69,7 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}
+      className={`${inter.variable} ${jetbrainsMono.variable} font-sans dark`}
     >
       <head>
         <Script
@@ -83,6 +83,7 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
+          forcedTheme="dark"
           disableTransitionOnChange
         >
           {/* <Particles

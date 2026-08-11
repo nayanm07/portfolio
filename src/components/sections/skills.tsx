@@ -154,7 +154,7 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="w-full min-h-screen py-20 md:py-28">
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
         {/* Header — Composio "FOR DEVELOPERS" style */}
         <div className="mb-10">
           <motion.span
@@ -175,8 +175,8 @@ const SkillsSection = () => {
 
           <p className="mt-4 max-w-2xl text-sm md:text-base text-body">
             {total}+ technologies across the full stack — native Android and
-            React Native on the front, multi-tenant NestJS backends, AI/voice
-            pipelines and AWS infrastructure behind them.
+            React Native and modern web applications on the front, multi-tenant
+            NestJS backends, AI/voice pipelines, and AWS infrastructure behind them.
           </p>
 
           <Link

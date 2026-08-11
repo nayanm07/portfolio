@@ -279,6 +279,21 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
+    name: "Web Applications",
+    tagline: "Responsive product experiences built for performance and usability",
+    accent: "#60a5fa",
+    skills: [
+      { label: "Next.js", icon: SIMPLE("nextdotjs"), color: "#ffffff" },
+      { label: "React", icon: DEVICON("react/react-original"), color: "#61dafb" },
+      { label: "TypeScript", icon: DEVICON("typescript/typescript-original"), color: "#3178c6" },
+      { label: "Tailwind CSS", icon: SIMPLE("tailwindcss", "38bdf8"), color: "#38bdf8" },
+      { label: "HTML5", icon: DEVICON("html5/html5-original"), color: "#e34f26" },
+      { label: "CSS3", icon: DEVICON("css3/css3-original"), color: "#1572b6" },
+      { label: "REST APIs", icon: SIMPLE("openapiinitiative", "6ba539"), color: "#6ba539" },
+      { label: "Git", icon: DEVICON("git/git-original"), color: "#f05032" },
+    ],
+  },
+  {
     name: "Backend",
     tagline: "NestJS / Node.js APIs, multi-tenant SaaS & real-time systems",
     accent: "#34d399",

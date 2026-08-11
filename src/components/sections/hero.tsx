@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
@@ -10,26 +12,34 @@ import {
 } from "@/components/ui/tooltip";
 import { usePreloader } from "../preloader";
 import { BlurIn, BoxReveal } from "../reveal-animations";
-import ScrollDownIcon from "../scroll-down-icon";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { config } from "@/data/config";
 import AgentBand from "../ui/agent-band";
+import BlackHoleHeroSection from "../black-hole-hero";
 
 const HeroSection = () => {
   const { isLoading } = usePreloader();
 
   return (
-    <section id="hero" className={cn("relative w-full min-h-screen overflow-hidden")}>
-      {/* Composio atmospheric backdrop: technical grid + electric-blue spotlight */}
-      <div className="pointer-events-none absolute inset-0 composio-grid opacity-60" />
-      <div className="composio-spotlight animate-spotlight-pulse" />
+    <section id="hero" className={cn("relative w-full overflow-hidden bg-black text-white")}>
+      <BlackHoleHeroSection
+        className="absolute inset-0 h-full w-full"
+        distance={24}
+        elevation={-5.5}
+        roll={-20}
+        focus={[0.72, 0.46]}
+        scrim="left"
+        scrimStrength={0.82}
+        resolution={0.65}
+        steps={260}
+      />
 
       {!isLoading && (
         <div className="relative z-[2] flex flex-col items-center">
           {/* ── Centered headline ──────────────────────────────── */}
-          <div className="flex flex-col items-center text-center px-4 pt-28 md:pt-32 pb-12">
+          <div className="flex w-full max-w-[42rem] self-start flex-col items-start px-6 pb-12 pt-28 text-left sm:px-10 md:pt-36 lg:px-16">
             <BlurIn delay={0.6}>
-              <span className="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full border border-hairline-strong bg-surface-elevated/60 text-[11px] font-mono uppercase tracking-[0.14em] text-body-strong">
+                <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[11px] font-mono uppercase tracking-[0.14em] text-white/80 backdrop-blur-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-success opacity-75 animate-ping" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
@@ -49,14 +59,13 @@ const HeroSection = () => {
                 <TooltipTrigger asChild>
                   <h1
                     className={cn(
-                      "font-medium text-6xl text-body-strong",
-                      "cursor-default font-display sm:text-7xl md:text-8xl xl:text-9xl tracking-tight"
+                      "cursor-default whitespace-nowrap font-display text-4xl font-medium leading-[0.95] tracking-tight text-white sm:text-6xl md:text-7xl xl:text-8xl"
                     )}
                   >
                     {config.author}
                   </h1>
                 </TooltipTrigger>
-                <TooltipContent side="bottom" className="dark:bg-white dark:text-black max-w-xs">
+                <TooltipContent side="bottom" className="max-w-xs border-white/15 bg-black text-white">
                   Nayan Mehta is a Full-Stack Mobile Engineer building React
                   Native &amp; native Android apps and NestJS/Node.js SaaS
                   backends.
@@ -65,7 +74,7 @@ const HeroSection = () => {
             </BlurIn>
 
             <BlurIn delay={1.1}>
-              <p className="mt-5 max-w-xl text-sm md:text-base text-body font-display">
+              <p className="mt-5 max-w-xl font-display text-sm text-white/70 md:text-base">
                 Full-Stack Mobile Engineer shipping React Native &amp; native
                 Android apps and multi-tenant NestJS backends.
               </p>
@@ -73,12 +82,15 @@ const HeroSection = () => {
 
             {/* CTAs */}
             <BoxReveal delay={1.6} width="fit-content">
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link href="/assets/Nayan-Resume.pdf" target="_blank">
                   <Button className="flex items-center gap-2">
                     <File size={18} />
                     <p>Resume</p>
                   </Button>
+                </Link>
+                <Link href="#about">
+                  <Button variant="outline">About Me</Button>
                 </Link>
                 <Link href={"#contact"}>
                   <Button variant={"outline"}>Hire Me</Button>
@@ -98,13 +110,9 @@ const HeroSection = () => {
           </div>
 
           {/* ── Full-width agent orchestration band ─────────────── */}
-          <AgentBand />
+          {/* <AgentBand /> */}
         </div>
       )}
-
-      <div className="relative flex justify-center py-8">
-        <ScrollDownIcon />
-      </div>
     </section>
   );
 };
