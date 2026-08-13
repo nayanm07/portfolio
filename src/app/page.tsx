@@ -21,7 +21,7 @@ function MainPage() {
           <AboutSection />
           <SkillsSection />
           <ProjectsSection />
-          {/* <ContactSection /> */}
+          <ContactSection />
         </main>
       </SmoothScroll>
     </>

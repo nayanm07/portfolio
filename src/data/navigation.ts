@@ -19,19 +19,19 @@ export const NAV_LINKS: NavLink[] = [
   },
   {
     title: "About",
-    link: "/about",
+    link: "/#about",
+  },
+  {
+    title: "Skills",
+    link: "/#skills",
   },
   {
     title: "Projects",
-    link: "/projects",
-  },
-  {
-    title: "Blog",
-    link: "/blog",
+    link: "/#projects",
   },
   {
     title: "Contact",
-    link: "/contact",
+    link: "/#contact",
   },
 ];
 

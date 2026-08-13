@@ -319,6 +319,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     accent: "#a78bfa",
     skills: [
       { label: "OpenAI", icon: "/assets/icons/openai-svgrepo-com_white.svg", color: "#ffffff" },
+      { label: "OpenRouter", icon: SIMPLE("openrouter", "ffffff"), color: "#ffffff" },
       { label: "Deepgram", icon: SIMPLE("deepgram", "13ef93"), color: "#13ef93" },
       { label: "Firebase", icon: DEVICON("firebase/firebase-plain"), color: "#ffca28" },
       { label: "WhatsApp API", icon: SIMPLE("whatsapp", "25d366"), color: "#25d366" },

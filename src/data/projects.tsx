@@ -1402,5 +1402,37 @@ const projects: Project[] = [
       );
     },
   },
+  {
+    id: "brpl-bypl",
+    category: "Government Utility Apps",
+    title: "BRPL & BYPL",
+    src: "/assets/projects-screenshots/brpl-bypl-cover.svg",
+    video: "",
+    screenshots: [],
+    intigrationTechnologies: [
+      "Production bug fixes for essential consumer utility flows",
+      "Dependency and SDK upgrades to keep apps stable and secure",
+      "Play Store release preparation and update delivery",
+      "Maintenance across BRPL (1M+) and BYPL (500K+) download audiences",
+    ],
+    skills: { frontend: [PROJECT_SKILLS.reactNative, PROJECT_SKILLS.ts, PROJECT_SKILLS.firebase], backend: [] },
+    content: <TypographyP className="font-mono">Maintained BRPL and BYPL, Delhi electricity-provider applications used by millions of consumers. Delivered production bug fixes, dependency and SDK upgrades, and Play Store release updates for two high-reach utility products.</TypographyP>,
+  },
+  {
+    id: "housecaller",
+    category: "Home Services App",
+    title: "Housecaller",
+    src: "/assets/projects-screenshots/housecaller-cover.svg",
+    video: "",
+    screenshots: [],
+    intigrationTechnologies: [
+      "Service discovery for verified home-service professionals",
+      "Appointment scheduling and booking confirmation flows",
+      "Customer booking tracking across Android and iOS",
+      "Customer app supporting 10K+ downloads",
+    ],
+    skills: { frontend: [PROJECT_SKILLS.reactNative, PROJECT_SKILLS.ts, PROJECT_SKILLS.redux], backend: [] },
+    content: <TypographyP className="font-mono">Built the customer-facing Housecaller app for finding and booking verified home-service professionals. The Android and iOS experience covers service discovery, scheduling, and booking tracking.</TypographyP>,
+  },
 ];
 export default projects;

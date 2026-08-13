@@ -38,7 +38,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       href={`/projects/${project.id}`}
       className={cn("group block xl:col-span-2", featured && "xl:col-span-4")}
     >
-      <article className="h-full overflow-hidden border border-hairline-strong bg-surface/30 transition-transform duration-300 hover:-translate-y-1">
+      <article className="h-full overflow-hidden rounded-2xl border border-hairline-strong bg-surface/30 transition-all duration-300 hover:-translate-y-1 hover:border-primary-glow/60 hover:bg-white/[0.04] hover:shadow-[0_18px_50px_rgba(26,38,255,0.14)]">
         <div className={cn("relative w-full overflow-hidden border-b border-hairline-strong", featured ? "aspect-[16/9]" : "aspect-[4/3]")}>
           <ChromaBackdrop />
           <div className="absolute inset-0 p-4">
@@ -48,7 +48,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                 alt={project.title}
                 width={700}
                 height={480}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-canvas-deep via-transparent to-transparent" />
@@ -94,7 +94,7 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="relative w-full">
       {/* Header */}
-      <div className="mx-auto max-w-7xl px-6 pt-20">
+      <div className="px-6 pt-20 sm:px-10 lg:px-16 xl:px-24">
         <span className="inline-flex items-center gap-2 border border-hairline-strong bg-surface-elevated/60 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-body-strong">
           <span className="h-1.5 w-1.5 bg-primary-glow" />
           Selected Work
@@ -109,7 +109,7 @@ const ProjectsSection = () => {
       </div>
 
       {/* Grid layout */}
-      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-5 px-6 pb-14 sm:grid-cols-2 xl:grid-cols-6 xl:grid-flow-dense">
+      <div className="mt-10 grid grid-cols-1 gap-5 px-6 pb-20 sm:grid-cols-2 sm:px-10 lg:px-16 xl:grid-cols-6 xl:grid-flow-dense xl:px-24">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
