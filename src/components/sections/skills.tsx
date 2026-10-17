@@ -1,204 +1,232 @@
 "use client";
-import Link from "next/link";
-import React from "react";
+
+import React, { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Cloud, CreditCard, Monitor, Server, Smartphone, Sparkles, Wrench, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  SKILL_CATEGORIES,
-  CategorizedSkill,
-  SkillCategory,
-} from "@/data/constants";
-import { motion } from "framer-motion";
+import { SKILL_CATEGORIES, CategorizedSkill } from "@/data/constants";
 
-/* ── Glitchy chromatic display heading ──────────────────────────── */
-const GlitchHeading = ({ children }: { children: string }) => (
-  <h2 className="relative inline-block font-display text-4xl md:text-6xl font-semibold tracking-tight text-white">
-    <span
-      aria-hidden
-      className="absolute inset-0 text-cyan/70 mix-blend-screen animate-glitch"
-      style={{ transform: "translateX(-2px)" }}
-    >
-      {children}
-    </span>
-    <span
-      aria-hidden
-      className="absolute inset-0 text-[#ff3d71]/70 mix-blend-screen animate-glitch"
-      style={{ transform: "translateX(2px)", animationDelay: "0.4s" }}
-    >
-      {children}
-    </span>
-    <span className="relative">{children}</span>
-  </h2>
-);
+const AUTO_ADVANCE_MS = 5000;
 
-/* ── Animated chromatic-bars visual with the category's hero icon ── */
-const ChromaticPanel = ({
-  accent,
-  icon,
-}: {
-  accent: string;
-  icon: string;
-}) => (
-  <div className="relative h-28 w-full overflow-hidden rounded-lg border border-hairline bg-canvas-deep">
-    {/* moving chromatic spectrum */}
-    <div
-      className="absolute inset-0 animate-chroma opacity-80"
-      style={{
-        backgroundImage: `linear-gradient(90deg, ${accent}, #00d4ff, #7b3aed, #ff3d71, ${accent})`,
-        backgroundSize: "200% 100%",
-        filter: "saturate(1.2)",
-      }}
-    />
-    {/* vertical aberration stripes */}
-    <div
-      className="absolute inset-0 mix-blend-overlay opacity-40"
-      style={{
-        backgroundImage:
-          "repeating-linear-gradient(90deg, rgba(0,0,0,0.5) 0 2px, transparent 2px 10px)",
-      }}
-    />
-    {/* icon plate */}
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/15 bg-canvas-deep/90 backdrop-blur-sm shadow-2xl">
-        <img src={icon} alt="" className="h-7 w-7 object-contain" />
-      </div>
-    </div>
-  </div>
-);
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  Frontend: Monitor,
+  Backend: Server,
+  Mobile: Smartphone,
+  "AI & Voice": Sparkles,
+  "Cloud & DevOps": Cloud,
+  "Payments & APIs": CreditCard,
+  "Testing & Tools": Wrench,
+};
 
-/* ── A skill chip (icon + label) ────────────────────────────────── */
-const Chip = ({ skill }: { skill: CategorizedSkill }) => (
-  <span className="group/chip inline-flex items-center gap-1.5 rounded-md border border-hairline bg-surface-elevated px-2 py-1 transition-colors hover:border-foreground/25">
-    <img src={skill.icon} alt="" loading="lazy" className="h-3.5 w-3.5 object-contain" />
-    <span className="text-[11px] font-medium text-body transition-colors group-hover/chip:text-white">
-      {skill.label}
-    </span>
-  </span>
-);
+/** "OCR (Azure Document Intelligence)" → ["OCR", "Azure Document Intelligence"] */
+const splitLabel = (label: string): [string, string | null] => {
+  const m = label.match(/^(.*?)\s*\((.+)\)\s*$/);
+  return m ? [m[1], m[2]] : [label, null];
+};
 
-/* ── Feature card per category ──────────────────────────────────── */
-const FeatureCard = ({
-  category,
-  index,
-  full,
-}: {
-  category: SkillCategory;
-  index: number;
-  full?: boolean;
-}) => (
-  <motion.div
-    initial={{ opacity: 0, y: 18 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-60px" }}
-    transition={{ duration: 0.5, delay: index * 0.05 }}
-    className={cn(
-      "group relative flex flex-col gap-4 rounded-xl border border-hairline-strong bg-surface/40 p-5 transition-colors hover:border-foreground/25",
-      full && "lg:col-span-2"
-    )}
-  >
-    {/* accent glow on hover */}
-    <div
-      className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-      style={{ background: `radial-gradient(60% 60% at 50% 0%, ${category.accent}18, transparent 70%)` }}
-    />
+/** Near-white brand colours make a dull glow — fall back to the category accent */
+const glowColor = (skill: CategorizedSkill, accent: string) =>
+  /^#f{3,6}$/i.test(skill.color) ? accent : skill.color;
 
-    <div className="relative flex flex-col gap-4 lg:flex-row lg:items-center">
-      <div className="flex-1">
-        <div className="flex items-center gap-3">
-          <h3 className="text-lg md:text-xl font-semibold text-white">
-            {category.name}
-          </h3>
-          <span
-            className="rounded-full border px-2 py-0.5 text-[10px] font-mono"
-            style={{
-              color: category.accent,
-              borderColor: `${category.accent}55`,
-              background: `${category.accent}11`,
-            }}
-          >
-            {category.skills.length}
-          </span>
-        </div>
-        <p className="mt-1.5 text-xs md:text-sm text-body">{category.tagline}</p>
-      </div>
-      <div className={cn("w-full lg:w-44 shrink-0", full && "lg:w-64")}>
-        <ChromaticPanel accent={category.accent} icon={category.skills[0].icon} />
-      </div>
-    </div>
-
-    <div className="relative flex flex-wrap gap-1.5">
-      {category.skills.map((skill) => (
-        <Chip key={skill.label} skill={skill} />
-      ))}
-    </div>
-  </motion.div>
-);
-
-/* ── Decorative node-connector strip ────────────────────────────── */
-const ConnectorStrip = () => (
-  <div className="my-8 flex items-stretch gap-1.5 opacity-50">
-    {Array.from({ length: 16 }).map((_, i) => (
-      <div
-        key={i}
-        className={cn(
-          "h-3 flex-1 border-t border-hairline-strong",
-          i % 3 === 0 && "border-l"
-        )}
-      />
-    ))}
-  </div>
-);
-
+/**
+ * Skills: a category menu beside a panel of that category's skills.
+ * Categories auto-advance while the section is on screen; hovering pauses,
+ * clicking picks one. On mobile the menu becomes a sideways-scrolling tab row.
+ */
 const SkillsSection = () => {
-  const total = SKILL_CATEGORIES.reduce((n, c) => n + c.skills.length, 0);
-  const odd = SKILL_CATEGORIES.length % 2 === 1;
+  const sectionRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [index, setIndex] = useState(0);
+  const [inView, setInView] = useState(false);
+  const [hovering, setHovering] = useState(false);
+  const [userPicked, setUserPicked] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  const total = SKILL_CATEGORIES.reduce((sum, c) => sum + c.skills.length, 0);
+  const category = SKILL_CATEGORIES[index];
+  const CategoryIcon = CATEGORY_ICONS[category.name] ?? Sparkles;
+  const autoplay = inView && !hovering && !userPicked && !reduceMotion;
+
+  useEffect(() => {
+    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.35 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!autoplay) return;
+    const id = setTimeout(() => setIndex((i) => (i + 1) % SKILL_CATEGORIES.length), AUTO_ADVANCE_MS);
+    return () => clearTimeout(id);
+  }, [autoplay, index]);
+
+  // Keep the active tab visible in the mobile tab row (scroll the row only, never the page)
+  useEffect(() => {
+    const row = menuRef.current;
+    const tab = row?.children[index] as HTMLElement | undefined;
+    if (row && tab && row.scrollWidth > row.clientWidth) {
+      row.scrollTo({ left: tab.offsetLeft - 24, behavior: "smooth" });
+    }
+  }, [index]);
+
+  const pick = (i: number) => {
+    setIndex(i);
+    setUserPicked(true); // a deliberate choice stops the auto-advance
+  };
 
   return (
-    <section id="skills" className="w-full min-h-screen py-20 md:py-28">
-      <div className="px-6 sm:px-10 lg:px-16 xl:px-24">
-        {/* Header — Composio "FOR DEVELOPERS" style */}
-        <div className="mb-10">
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 border border-hairline-strong bg-surface-elevated/60 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.18em] text-body-strong"
-          >
-            <span className="h-1.5 w-1.5 bg-primary-glow" />
-            For Developers
-          </motion.span>
+    <section ref={sectionRef} id="skills" className="py-20 md:py-28">
+      <div className="mx-auto mb-12 max-w-6xl px-6">
+        <h2 className="text-3xl font-bold text-[var(--aw-text)] md:text-4xl">Skills</h2>
+        <div className="mt-4 h-1 w-16 rounded-full bg-primary" />
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-[var(--aw-text-secondary)] md:text-base">
+          {total}+ technologies across frontend, backend, mobile, AI and cloud — the toolkit I use to take products from
+          idea to production.
+        </p>
+      </div>
 
-          <div className="mt-5">
-            <Link href={"#skills"}>
-              <GlitchHeading>TECH STACK</GlitchHeading>
-            </Link>
+      <div
+        className="mx-auto max-w-6xl px-6"
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+      >
+        <div className="grid gap-4 md:grid-cols-[260px_minmax(0,1fr)] md:gap-5">
+          {/* Category menu */}
+          <div
+            ref={menuRef}
+            role="tablist"
+            aria-label="Skill categories"
+            aria-orientation="vertical"
+            className="-mx-6 flex gap-2 overflow-x-auto px-6 pb-1 [scrollbar-width:none] md:mx-0 md:flex-col md:gap-1.5 md:overflow-visible md:px-0 md:pb-0"
+          >
+            {SKILL_CATEGORIES.map((c, i) => {
+              const Icon = CATEGORY_ICONS[c.name] ?? Sparkles;
+              const selected = i === index;
+              return (
+                <button
+                  key={c.name}
+                  role="tab"
+                  aria-selected={selected}
+                  onClick={() => pick(i)}
+                  className={cn(
+                    "relative flex shrink-0 items-center gap-3 overflow-hidden rounded-xl border px-3.5 py-2.5 text-left transition-colors md:py-3",
+                    selected
+                      ? "bg-[var(--aw-card)]"
+                      : "border-transparent text-[var(--aw-text-secondary)] hover:bg-[var(--aw-card)] hover:text-[var(--aw-text)]"
+                  )}
+                  style={selected ? { borderColor: `${c.accent}55` } : undefined}
+                >
+                  <span
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors"
+                    style={{ backgroundColor: selected ? `${c.accent}26` : "var(--aw-bg-tertiary)" }}
+                  >
+                    <Icon className="h-4 w-4" style={{ color: selected ? c.accent : "var(--aw-text-tertiary)" }} />
+                  </span>
+                  <span
+                    className="flex-1 whitespace-nowrap text-sm font-semibold"
+                    style={{ color: selected ? "var(--aw-text)" : undefined }}
+                  >
+                    {c.name}
+                  </span>
+                  <span className="hidden font-mono text-xs text-[var(--aw-text-tertiary)] md:inline">
+                    {String(c.skills.length).padStart(2, "0")}
+                  </span>
+
+                  {/* Auto-advance timer */}
+                  {selected && autoplay && (
+                    <span
+                      key={`timer-${index}`}
+                      className="skill-timer absolute inset-x-0 bottom-0 h-[2px]"
+                      style={{ backgroundColor: c.accent, animationDuration: `${AUTO_ADVANCE_MS}ms` }}
+                    />
+                  )}
+                </button>
+              );
+            })}
           </div>
 
-          <p className="mt-4 max-w-2xl text-sm md:text-base text-body">
-            {total}+ technologies across the full stack — native Android and
-            React Native and modern web applications on the front, multi-tenant
-            NestJS backends, AI/voice pipelines, and AWS infrastructure behind them.
-          </p>
-
-          <Link
-            href="#projects"
-            className="mt-6 inline-flex w-fit items-center border border-hairline-strong bg-transparent px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-body-strong transition-colors hover:bg-surface-elevated"
+          {/* Panel */}
+          <div
+            className="relative overflow-hidden rounded-2xl border border-[var(--aw-border)] bg-[var(--aw-card)] md:min-h-[460px]"
+            role="tabpanel"
           >
-            View Projects
-          </Link>
-        </div>
-
-        <ConnectorStrip />
-
-        {/* Feature card grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {SKILL_CATEGORIES.map((category, index) => (
-            <FeatureCard
-              key={category.name}
-              category={category}
-              index={index}
-              full={odd && index === SKILL_CATEGORIES.length - 1}
+            <div
+              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full blur-3xl transition-colors duration-700"
+              style={{ backgroundColor: `${category.accent}1f` }}
             />
-          ))}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={category.name}
+                className="relative p-5 md:p-8"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+              >
+                <div className="mb-6 flex items-start gap-4">
+                  <span
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border"
+                    style={{
+                      borderColor: `${category.accent}55`,
+                      backgroundColor: `${category.accent}1a`,
+                      boxShadow: `0 0 28px -4px ${category.accent}55`,
+                    }}
+                  >
+                    <CategoryIcon className="h-6 w-6" style={{ color: category.accent }} />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-xl font-bold text-[var(--aw-text)] md:text-2xl">{category.name}</h3>
+                      <span
+                        className="rounded-full px-2 py-0.5 text-[11px] font-semibold"
+                        style={{ backgroundColor: `${category.accent}22`, color: category.accent }}
+                      >
+                        {category.skills.length} skills
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-[var(--aw-text-secondary)]">{category.tagline}</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 sm:gap-2.5 lg:grid-cols-3">
+                  {category.skills.map((skill, i) => {
+                    const [main, sub] = splitLabel(skill.label);
+                    return (
+                      <motion.div
+                        key={skill.label}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.05 + i * 0.03, duration: 0.3 }}
+                        className="skill-card flex items-center gap-2.5 rounded-xl border border-[var(--aw-border)] bg-[var(--aw-bg-secondary)] px-2.5 py-2.5 sm:gap-3 sm:px-3.5 sm:py-3"
+                        style={{ ["--skill-color" as any]: glowColor(skill, category.accent) }}
+                      >
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--aw-bg-tertiary)] sm:h-9 sm:w-9">
+                          {skill.icon ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img src={skill.icon} alt="" loading="lazy" className="skill-icon h-5 w-5 object-contain" />
+                          ) : (
+                            <CategoryIcon className="skill-icon h-4 w-4" style={{ color: category.accent }} />
+                          )}
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block break-words text-[13px] font-semibold leading-tight text-[var(--aw-text)] sm:text-sm">
+                            {main}
+                          </span>
+                          {sub && (
+                            <span className="mt-0.5 block break-words text-[11px] leading-tight text-[var(--aw-text-tertiary)] sm:text-xs">
+                              {sub}
+                            </span>
+                          )}
+                        </span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

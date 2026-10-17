@@ -23,9 +23,9 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ['"Inter"', "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "JetBrains Mono", "Fira Code", "monospace"],
-        display: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ['"Inter"', "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -120,6 +120,22 @@ const config = {
           "50%": { transform: "translate(1px, -1px)" },
           "75%": { transform: "translate(-1px, 0)" },
         },
+        "marquee-left": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "marquee-right": {
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0)" },
+        },
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(16px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-14px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -128,6 +144,10 @@ const config = {
         "caret-blink": "caret-blink 1.1s steps(1) infinite",
         chroma: "chroma 8s linear infinite",
         glitch: "glitch 2.5s steps(2) infinite",
+        "marquee-left": "marquee-left var(--marquee-duration, 36s) linear infinite",
+        "marquee-right": "marquee-right var(--marquee-duration, 44s) linear infinite",
+        "fade-up": "fade-up 0.6s ease-out both",
+        "float-slow": "float-slow 6s ease-in-out infinite",
       },
     },
   },

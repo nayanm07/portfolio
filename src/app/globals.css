@@ -8,96 +8,103 @@ body {
 
 @layer base {
   /* ───────────────────────────────────────────────────────────────
-     Composio design system — dark, technical, single electric-blue
-     voltage (#0007cd) over a near-black canvas (#0f0f0f).
-     Surfaces step up in brightness instead of casting shadows.
+     awrs.me design system — pure-black canvas, rose (#d4547e) accent,
+     dark cards stepping up in brightness, hairline borders.
+     One sans stack everywhere: "Inter", system-ui, sans-serif.
      ─────────────────────────────────────────────────────────────── */
   :root {
-    /* Light fallback (brand is dark-first; keeps the toggle meaningful) */
+    /* shadcn HSL tokens (dark-first; light kept meaningful) */
     --background: 0 0% 100%;
-    --foreground: 0 0% 6%;
+    --foreground: 240 25% 14%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 6%;
+    --card-foreground: 240 25% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 6%;
-    --primary: 238 100% 40%;
+    --popover-foreground: 240 25% 14%;
+    --primary: 340 59% 58%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 6%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 6%;
+    --secondary: 240 20% 96%;
+    --secondary-foreground: 240 25% 14%;
+    --muted: 240 20% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 240 20% 96%;
+    --accent-foreground: 240 25% 14%;
     --destructive: 0 100% 65%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 238 100% 40%;
-    --radius: 0.5rem;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 340 59% 58%;
+    --radius: 0.75rem;
 
-    /* Composio extended tokens */
-    --canvas-deep: 0 0% 0%;
-    --surface-elevated: 0 0% 96%;
-    --surface-strong: 0 0% 92%;
-    --hairline-strong: 0 0% 82%;
-    --primary-active: 238 100% 32%;
-    --primary-glow: 237 100% 55%;
-    --body: 0 0% 40%;
-    --body-strong: 0 0% 6%;
-    --muted-soft: 0 0% 60%;
-    --accent-cyan: 187 100% 50%;
-    --accent-violet: 267 84% 58%;
-    --semantic-success: 147 60% 51%;
-    --brand: hsl(238 100% 40%);
+    /* awrs raw palette (light) */
+    --aw-bg: #ffffff;
+    --aw-bg-secondary: #f5f5f7;
+    --aw-bg-tertiary: #eeeef2;
+    --aw-card: #ffffff;
+    --aw-card-hover: #f9f9fb;
+    --aw-border: #e5e7eb;
+    --aw-navbar: #ffffffd9;
+    --aw-text: #1a1a2e;
+    --aw-text-secondary: #4b5563;
+    --aw-text-tertiary: #6b7280;
 
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --aw-primary: #d4547e;
+    --aw-primary-light: #e07a9c;
+    --aw-primary-dark: #a83d62;
+    --aw-primary-glow: #d4547e40;
+    --aw-success: #22c55e;
+    --aw-amber: #f59e0b;
+
+    --body: 220 9% 46%;
+    --body-strong: 240 25% 14%;
+    --semantic-success: 142 71% 45%;
+    --brand: var(--aw-primary);
   }
 
   .dark {
-    /* Composio dark — the real brand experience */
-    --background: 0 0% 6%; /* canvas #0f0f0f */
-    --foreground: 0 0% 100%;
-    --card: 0 0% 9%; /* surface-card #181818 */
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 16%; /* surface-strong #2a2a2a */
-    --popover-foreground: 0 0% 100%;
-    --primary: 238 100% 40%; /* electric blue #0007cd */
+    /* shadcn HSL tokens — the real awrs dark experience */
+    --background: 0 0% 0%; /* #000 */
+    --foreground: 0 0% 94%; /* #f0f0f0 */
+    --card: 0 0% 3%; /* #070707 */
+    --card-foreground: 0 0% 94%;
+    --popover: 0 0% 6%; /* #0f0f0f */
+    --popover-foreground: 0 0% 94%;
+    --primary: 340 59% 58%; /* #d4547e rose */
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 13%; /* surface-card-elevated #222 */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 9%;
-    --muted-foreground: 0 0% 66%; /* body #a8a8a8 */
-    --accent: 0 0% 13%;
-    --accent-foreground: 0 0% 100%;
+    --secondary: 0 0% 6%;
+    --secondary-foreground: 0 0% 94%;
+    --muted: 0 0% 5%;
+    --muted-foreground: 240 5% 65%; /* #a1a1aa */
+    --accent: 0 0% 10%; /* #191919 card-hover */
+    --accent-foreground: 0 0% 94%;
     --destructive: 0 100% 65%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 13%; /* hairline #222 */
-    --input: 0 0% 13%;
-    --ring: 238 100% 40%;
+    --border: 0 0% 14%; /* #242424 */
+    --input: 0 0% 14%;
+    --ring: 340 59% 58%;
 
-    --canvas-deep: 0 0% 0%;
-    --surface-elevated: 0 0% 13%;
-    --surface-strong: 0 0% 16%;
-    --hairline-strong: 0 0% 20%;
-    --primary-active: 238 100% 32%;
-    --primary-glow: 237 100% 55%;
-    --body: 0 0% 66%;
-    --body-strong: 0 0% 100%;
-    --muted-soft: 0 0% 40%;
-    --accent-cyan: 187 100% 50%;
-    --accent-violet: 267 84% 58%;
-    --semantic-success: 147 60% 51%;
-    --brand: hsl(237 100% 55%);
+    /* awrs raw palette (dark) */
+    --aw-bg: #000000;
+    --aw-bg-secondary: #080808;
+    --aw-bg-tertiary: #0f0f0f;
+    --aw-card: #070707;
+    --aw-card-hover: #191919;
+    --aw-border: #242424;
+    --aw-navbar: #0a0a0aeb;
+    --aw-text: #f0f0f0;
+    --aw-text-secondary: #a1a1aa;
+    --aw-text-tertiary: #71717a;
 
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --aw-primary: #d4547e;
+    --aw-primary-light: #e07a9c;
+    --aw-primary-dark: #a83d62;
+    --aw-primary-glow: #d4547e40;
+    --aw-success: #22c55e;
+    --aw-amber: #f59e0b;
+
+    --body: 240 5% 65%;
+    --body-strong: 0 0% 94%;
+    --semantic-success: 142 71% 45%;
+    --brand: var(--aw-primary);
   }
 }
 
@@ -105,55 +112,711 @@ body {
   * {
     @apply border-border;
   }
+  /* awrs.me font stack — "Inter" by name only (not downloaded), so it falls
+     back to system-ui exactly like awrs.me (Segoe UI on Windows, SF on Mac). */
+  :root {
+    --font-sans: "Inter", system-ui, sans-serif;
+  }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-    letter-spacing: -0.011em;
+    font-family: var(--font-sans);
   }
-  /* Composio display = single sans family, weight 500, tight tracking */
-  h1, h2, h3, h4 {
-    letter-spacing: -0.03em;
-    font-weight: 500;
+  /* headings use the same sans stack as awrs.me */
+  .font-display {
+    font-family: var(--font-sans);
   }
   code, pre, .font-mono {
-    font-family: var(--font-mono), "JetBrains Mono", "Fira Code", monospace;
+    font-family: var(--font-mono), ui-monospace, "JetBrains Mono", monospace;
+  }
+  ::selection {
+    background: var(--aw-primary);
+    color: #fff;
+  }
+  /* thin scrollbar like awrs */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--aw-border) transparent;
   }
 }
 
 @layer components {
-  /* Radial electric-blue spotlight that backs hero/CTA bands */
-  .composio-spotlight {
+  /* Rose radial glow behind hero / CTA bands */
+  .aw-glow {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background: radial-gradient(
-      60% 50% at 50% 38%,
-      hsl(var(--primary-glow) / 0.22) 0%,
-      hsl(var(--primary) / 0.1) 35%,
+      55% 50% at 50% 30%,
+      var(--aw-primary-glow) 0%,
+      rgba(212, 84, 126, 0.08) 35%,
       transparent 70%
     );
   }
 
   /* Faint technical grid texture */
-  .composio-grid {
-    background-image: linear-gradient(
-        to right,
-        hsl(var(--hairline-strong) / 0.35) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        hsl(var(--hairline-strong) / 0.35) 1px,
-        transparent 1px
-      );
-    background-size: 56px 56px;
+  .aw-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 75%);
   }
 
-  /* Brightness-step card with hairline border (no drop shadow) */
-  .composio-card {
-    background-color: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    border-radius: 0.75rem;
+  /* awrs card — #070707 surface, hairline border, hover lift */
+  .aw-card {
+    background-color: var(--aw-card);
+    border: 1px solid var(--aw-border);
+    border-radius: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  }
+  .aw-card:hover {
+    background-color: var(--aw-card-hover);
+    border-color: color-mix(in srgb, var(--aw-primary) 45%, transparent);
+  }
+
+}
+
+/* Hero beams — a 40-unit dash slides along each curve (dash period 3040):
+   offset 3100 puts it just before the start, 1400 just past the end. */
+.beam-path {
+  animation-name: beam-travel;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+}
+@keyframes beam-travel {
+  from {
+    stroke-dashoffset: 3100;
+  }
+  to {
+    stroke-dashoffset: 1400;
+  }
+}
+@media (max-width: 768px) {
+  .beam-static {
+    stroke-opacity: 0.55 !important;
+    stroke-width: 1px !important;
+  }
+  .beam-path {
+    stroke-width: 1px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .beam-path {
+    animation: none;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   About section — ported from awrs.me (dark-theme values).
+   ─────────────────────────────────────────────────────────────── */
+@property --available-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@property --gradient-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@property --stat-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--aw-primary), var(--aw-primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card with a cursor-following glow (SpotlightCard sets --spotlight-x/y) */
+.spotlight-card {
+  --spotlight-x: -100px;
+  --spotlight-y: -100px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s, filter 0.3s;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(400px circle at var(--spotlight-x) var(--spotlight-y), var(--spotlight-color), transparent 40%);
+  transition: opacity 0.4s;
+}
+.spotlight-card:hover {
+  border-color: #d4547e66;
+  box-shadow: 0 0 32px -8px #d4547e40;
+  transform: translateY(-2px);
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Rotating rose ring around the initials avatar */
+.avatar-ring {
+  background: conic-gradient(from var(--gradient-angle), var(--aw-primary), var(--aw-primary-light), var(--aw-primary-dark), var(--aw-primary-light), var(--aw-primary));
+  animation: gradient-rotate 4s linear infinite;
+}
+@keyframes gradient-rotate {
+  to { --gradient-angle: 360deg; }
+}
+
+/* "Available for work" card: drifting green tint + rotating green border */
+.available-bg-gradient {
+  pointer-events: none;
+  background: linear-gradient(135deg, #22c55e, #10b981, #059669, #10b981) 0 0 / 200% 200%;
+  animation: available-bg-shift 4s ease-in-out infinite;
+}
+@keyframes available-bg-shift {
+  0%, 100% { opacity: 0.03; background-position: 0%; }
+  50% { opacity: 0.06; background-position: 100%; }
+}
+.available-border-ring {
+  background: conic-gradient(from var(--available-angle), #22c55e, #4ade80, #86efac, #4ade80, #22c55e);
+  padding: 1.5px;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: available-gradient-rotate 3s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+}
+.available-card:hover .available-border-ring {
+  opacity: 0.8;
+}
+@keyframes available-gradient-rotate {
+  to { --available-angle: 360deg; }
+}
+.available-ping {
+  animation: available-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes available-ping {
+  75%, 100% { opacity: 0; transform: scale(2); }
+}
+
+/* Green glass "Resume" button with a light sweep on hover */
+.cv-download-btn {
+  position: relative;
+  overflow: hidden;
+  color: #4ade80;
+  background: linear-gradient(135deg, #22c55e1a, #10b9810f);
+  border: 1px solid #22c55e40;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s;
+}
+.cv-download-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0000 0%, #ffffff1a 50%, #0000 100%);
+  transform: translate(-100%);
+  transition: transform 0.6s;
+}
+.cv-download-btn:hover::before {
+  transform: translate(100%);
+}
+.cv-download-btn:hover {
+  background: linear-gradient(135deg, #22c55e2e, #10b9811f);
+  border-color: #22c55e73;
+  box-shadow: 0 0 28px #22c55e33, 0 4px 16px #22c55e1f;
+}
+.cv-download-btn:hover .cv-download-icon {
+  animation: cv-bounce 0.5s;
+}
+@keyframes cv-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+/* Watch */
+.clock-face {
+  filter: drop-shadow(0 0 22px #ffffff1f);
+}
+.clock-halo {
+  position: absolute;
+  inset: -80px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, #ffffff1a 0%, #ffffff0a 35%, #ffffff05 55%, #0000 80%);
+  animation: clock-halo-pulse 5s ease-in-out infinite;
+}
+@keyframes clock-halo-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(1.05); }
+}
+.lume-dot {
+  animation: lume-pulse 4s ease-in-out infinite;
+}
+@keyframes lume-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Globe */
+.globe-glow-wrap {
+  position: relative;
+}
+.globe-glow-wrap::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 15px 1px #ffffff14, 0 0 40px 2px #ffffff0a, 0 0 80px 4px #ffffff05;
+}
+
+/* Impact stats */
+.impact-stats-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), #d4547e12, transparent 50%);
+}
+.impact-stats-outer.spotlight-card:hover {
+  transform: none;
+}
+.impact-stat-float-1 { animation: impact-float 5s ease-in-out infinite; }
+.impact-stat-float-2 { animation: impact-float 5s ease-in-out 1.25s infinite; }
+.impact-stat-float-3 { animation: impact-float 5s ease-in-out 2.5s infinite; }
+.impact-stat-float-4 { animation: impact-float 5s ease-in-out 3.75s infinite; }
+@media (hover: none) {
+  .impact-stat-float-1, .impact-stat-float-2, .impact-stat-float-3, .impact-stat-float-4 {
+    animation: none;
+  }
+}
+@keyframes impact-float {
+  0%, 100% { translate: 0; }
+  50% { translate: 0 -6px; }
+}
+.impact-stat.spotlight-card:hover {
+  border-color: color-mix(in srgb, var(--stat-accent, var(--aw-primary)) 40%, transparent);
+  box-shadow: 0 0 35px -5px var(--stat-glow, #d4547e40), 0 8px 24px -8px #0000004d;
+}
+.impact-stat::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--stat-accent, var(--aw-primary));
+  opacity: 0.05;
+  filter: blur(30px);
+  pointer-events: none;
+  transform: translate(-50%) translateY(-60%);
+  transition: opacity 0.4s;
+}
+.impact-stat:hover::after {
+  opacity: 0.12;
+}
+.impact-stat-border {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  background: conic-gradient(from var(--stat-border-angle), transparent 0%, transparent 65%, var(--stat-accent, var(--aw-primary)) 78%, transparent 100%);
+  transition: opacity 0.4s;
+  animation: stat-border-rotate 3.5s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+}
+.impact-stat:hover .impact-stat-border {
+  opacity: 1;
+}
+@keyframes stat-border-rotate {
+  to { --stat-border-angle: 360deg; }
+}
+.impact-stat-tilt {
+  transition: transform 0.15s ease-out;
+}
+.impact-stat-glow {
+  animation: impact-glow-pulse 3s ease-in-out infinite;
+}
+.impact-stat:hover .impact-stat-glow {
+  animation-duration: 1.5s;
+}
+@keyframes impact-glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+.impact-orbit { animation: impact-orbit-spin 12s linear infinite; }
+.impact-orbit-dot { animation: impact-orbit-spin 4s linear infinite; }
+.impact-orbit-dot-reverse { animation: impact-orbit-spin-reverse 6s linear infinite; }
+.impact-stat:hover .impact-orbit circle { opacity: 0.45; }
+.impact-stat:hover .impact-orbit-dot circle,
+.impact-stat:hover .impact-orbit-dot-reverse circle { opacity: 0.9; }
+@keyframes impact-orbit-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes impact-orbit-spin-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+/* Orbital grid — the watch sits in circular notches cut out of the cards
+   around it. Each notched card is a border-coloured base, with an inner
+   ::after panel masked by a 1px-larger circle so the border follows the notch. */
+.orbital-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+@media (max-width: 1023px) {
+  .orbital-clock-cell {
+    z-index: 10;
+    margin-top: -3.5rem;
+    margin-bottom: -3.5rem;
+  }
+  .orbital-clock-cell .clock-halo { inset: -20px; }
+  .orbital-clock-cell svg { max-width: 240px; height: auto; }
+  .orbital-card-start.spotlight-card,
+  .orbital-card-end.spotlight-card {
+    background: var(--aw-border);
+    border: 1px solid #0000;
+  }
+  .orbital-card-start.spotlight-card::after,
+  .orbital-card-end.spotlight-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    border-radius: calc(1rem - 1px);
+    background: var(--aw-card);
+    pointer-events: none;
+  }
+  .orbital-card-start.spotlight-card {
+    -webkit-mask-image: radial-gradient(circle at 50% calc(100% + 64px), #0000 126px, #000 129px);
+    mask-image: radial-gradient(circle at 50% calc(100% + 64px), #0000 126px, #000 129px);
+  }
+  .orbital-card-start.spotlight-card::after {
+    -webkit-mask-image: radial-gradient(circle at 50% calc(100% + 65px), #0000 127px, #000 130px);
+    mask-image: radial-gradient(circle at 50% calc(100% + 65px), #0000 127px, #000 130px);
+  }
+  .orbital-card-end.spotlight-card {
+    -webkit-mask-image: radial-gradient(circle at 50% -64px, #0000 126px, #000 129px);
+    mask-image: radial-gradient(circle at 50% -64px, #0000 126px, #000 129px);
+  }
+  .orbital-card-end.spotlight-card::after {
+    -webkit-mask-image: radial-gradient(circle at 50% -65px, #0000 127px, #000 130px);
+    mask-image: radial-gradient(circle at 50% -65px, #0000 127px, #000 130px);
+  }
+  .orbital-card-start .orbital-content-start { padding-bottom: 5rem; }
+  .orbital-card-end .orbital-content-end { padding-top: 5rem; }
+}
+@media (min-width: 1024px) {
+  .orbital-grid {
+    display: grid;
+    grid-template-columns: 1fr 200px 1fr;
+    grid-template-rows: 240px;
+    align-items: stretch;
+    gap: 0;
+    overflow: visible;
+  }
+  .orbital-card-start { grid-area: 1 / 1; }
+  .orbital-clock-cell { z-index: 10; grid-area: 1 / 2; }
+  .orbital-card-end { grid-area: 1 / 3; }
+  .orbital-card-start.spotlight-card,
+  .orbital-card-end.spotlight-card,
+  .orbital-card-top.spotlight-card,
+  .orbital-card-bottom.spotlight-card {
+    background: var(--aw-border);
+    border: 1px solid #0000;
+  }
+  .orbital-card-start.spotlight-card::after,
+  .orbital-card-end.spotlight-card::after,
+  .orbital-card-top.spotlight-card::after,
+  .orbital-card-bottom.spotlight-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    border-radius: calc(1rem - 1px);
+    background: var(--aw-card);
+    pointer-events: none;
+  }
+  .orbital-card-start.spotlight-card {
+    -webkit-mask-image: radial-gradient(circle at calc(100% + 100px), #0000 182px, #000 185px);
+    mask-image: radial-gradient(circle at calc(100% + 100px), #0000 182px, #000 185px);
+  }
+  .orbital-card-start.spotlight-card::after {
+    -webkit-mask-image: radial-gradient(circle at calc(100% + 101px), #0000 183px, #000 186px);
+    mask-image: radial-gradient(circle at calc(100% + 101px), #0000 183px, #000 186px);
+  }
+  .orbital-card-end.spotlight-card {
+    -webkit-mask-image: radial-gradient(circle at -100px, #0000 182px, #000 185px);
+    mask-image: radial-gradient(circle at -100px, #0000 182px, #000 185px);
+  }
+  .orbital-card-end.spotlight-card::after {
+    -webkit-mask-image: radial-gradient(circle at -101px, #0000 183px, #000 186px);
+    mask-image: radial-gradient(circle at -101px, #0000 183px, #000 186px);
+  }
+  .orbital-card-top.spotlight-card {
+    -webkit-mask-image: radial-gradient(circle at 50% calc(100% + 132px), #0000 182px, #000 185px);
+    mask-image: radial-gradient(circle at 50% calc(100% + 132px), #0000 182px, #000 185px);
+  }
+  .orbital-card-top.spotlight-card::after {
+    -webkit-mask-image: radial-gradient(circle at 50% calc(100% + 132px), #0000 183px, #000 186px);
+    mask-image: radial-gradient(circle at 50% calc(100% + 132px), #0000 183px, #000 186px);
+  }
+  .orbital-card-bottom.spotlight-card {
+    -webkit-mask-image: radial-gradient(circle at 50% -132px, #0000 182px, #000 185px);
+    mask-image: radial-gradient(circle at 50% -132px, #0000 182px, #000 185px);
+  }
+  .orbital-card-bottom.spotlight-card::after {
+    -webkit-mask-image: radial-gradient(circle at 50% -132px, #0000 183px, #000 186px);
+    mask-image: radial-gradient(circle at 50% -132px, #0000 183px, #000 186px);
+  }
+  /* Two-class selectors: Tailwind emits responsive utilities (md:p-6) last,
+     so a single class here would lose to them. */
+  .orbital-grid .orbital-content-start { padding-inline-end: 5.5rem; }
+  .orbital-grid .orbital-content-end { padding-inline-start: 5.5rem; }
+  .orbital-card-top .orbital-content-top { padding-bottom: 3.5rem; }
+  .orbital-card-bottom .orbital-content-bottom { padding-top: 3.5rem; }
+  /* Hovering a notched card lights up its border (the base layer) */
+  .orbital-card-start.spotlight-card:hover,
+  .orbital-card-end.spotlight-card:hover,
+  .orbital-card-top.spotlight-card:hover,
+  .orbital-card-bottom.spotlight-card:hover {
+    background: #d4547e40;
+    box-shadow: none;
+    filter: drop-shadow(0 0 18px #d4547e33);
+    transform: translateY(-2px);
+  }
+  .impact-stats-outer.spotlight-card:hover {
+    transform: none;
+  }
+  .available-card.spotlight-card:hover {
+    background: #22c55e40;
+    box-shadow: none;
+    filter: drop-shadow(0 0 20px #22c55e33);
+    transform: translateY(-2px);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   Experience timeline — ported from awrs.me (dark-theme values).
+   ─────────────────────────────────────────────────────────────── */
+.experience-line {
+  background-image: linear-gradient(to top, var(--aw-primary-light) 0%, #f9d8e3 40%, transparent 95%);
+}
+.experience-dot {
+  background-color: var(--aw-primary);
+  box-shadow: 0 0 8px 3px #e07a9cb3, 0 0 24px 10px #e07a9c66, 0 0 80px 24px #e07a9c33;
+  animation: timeline-pulse 1.5s ease-in-out infinite;
+}
+@keyframes timeline-pulse {
+  0%, 100% { box-shadow: 0 0 8px 3px #e07a9cb3, 0 0 24px 10px #e07a9c66, 0 0 80px 24px #e07a9c33; }
+  50% { box-shadow: 0 0 5px 2px #e07a9c80, 0 0 12px 5px #e07a9c33; }
+}
+.experience-marker-ring {
+  animation: marker-ring-pulse 2.5s ease-out infinite;
+}
+@keyframes marker-ring-pulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+.experience-marker-icon {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.group\/exp:hover .experience-marker-icon {
+  transform: scale(1.15);
+}
+/* Entries stay hidden until they scroll in (see experience.tsx) */
+.exp-reveal:not(.is-visible) {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .experience-dot, .experience-marker-ring { animation: none; }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   Skills — category menu + panel of skill cards.
+   ─────────────────────────────────────────────────────────────── */
+.skill-card {
+  transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.skill-card:hover {
+  border-color: color-mix(in srgb, var(--skill-color) 55%, transparent);
+  background-color: color-mix(in srgb, var(--skill-color) 8%, var(--aw-card));
+  box-shadow: 0 8px 28px -8px color-mix(in srgb, var(--skill-color) 45%, transparent);
+  transform: translateY(-3px);
+}
+.skill-card .skill-icon {
+  transition: transform 0.3s, filter 0.3s;
+}
+.skill-card:hover .skill-icon {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px var(--skill-color));
+}
+/* Auto-advance timer bar on the active category */
+@keyframes skill-timer {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.skill-timer {
+  transform-origin: left;
+  animation: skill-timer linear forwards;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   Featured projects — ported from awrs.me.
+   ─────────────────────────────────────────────────────────────── */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes rotate-border {
+  to { --border-angle: 360deg; }
+}
+.featured-card-border {
+  padding: 1.5px;
+  opacity: 0;
+  background: conic-gradient(from var(--border-angle), transparent 25%, var(--card-color) 50%, transparent 75%);
+  transition: opacity 0.5s;
+  animation: rotate-border 3s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+}
+.featured-card:hover .featured-card-border {
+  opacity: 1;
+}
+.featured-card:hover {
+  box-shadow: 0 0 28px -6px color-mix(in srgb, var(--card-color) 35%, transparent);
+}
+/* Animated product mockups (project-mocks.tsx) — paused while off screen */
+.mock-root:not([data-playing="true"]) * {
+  animation-play-state: paused !important;
+}
+@keyframes mock-wave {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+.mock-wave {
+  transform-origin: bottom;
+  animation: mock-wave 0.9s ease-in-out infinite;
+}
+@keyframes mock-ring {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+.mock-ring {
+  animation: mock-ring 2s ease-out infinite;
+}
+@keyframes mock-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.mock-grow {
+  transform-origin: bottom;
+  animation: mock-grow 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes mock-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.mock-in {
+  animation: mock-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes mock-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.mock-caret {
+  animation: mock-caret 1s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mock-wave, .mock-ring, .mock-grow, .mock-in, .mock-caret { animation: none; }
+}
+
+/* Media area shrinks on short screens so a pinned card always fits */
+.featured-media {
+  height: 220px;
+}
+@media (min-width: 768px) {
+  .featured-media {
+    height: clamp(200px, calc(100vh - 420px), 400px);
+  }
+}
+/* /projects grid: cards aren't pinned, so use a fixed media height */
+.all-projects .featured-media {
+  height: 240px;
+}
+@media (min-width: 768px) {
+  .all-projects .featured-media {
+    height: 320px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .featured-card-border { animation: none; }
+}
+
+/* "How It Works" — packet travelling along a connector (vertical on mobile,
+   horizontal from md up). Duration is set inline per step. */
+.workflow-packet {
+  left: 50%;
+  top: 0;
+  translate: -50% -50%;
+  animation-name: packet-y;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-fill-mode: forwards;
+}
+@keyframes packet-y {
+  from { top: 0; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  to { top: 100%; opacity: 0; }
+}
+@keyframes packet-x {
+  from { left: 0; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  to { left: 100%; opacity: 0; }
+}
+/* Key Work card mini-pipeline — always horizontal (it's scaled, so no breakpoints) */
+.mini-packet {
+  left: 0;
+  translate: -50% -50%;
+  animation-name: packet-x;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-fill-mode: forwards;
+}
+@media (min-width: 768px) {
+  .workflow-packet {
+    top: 50%;
+    left: 0;
+    animation-name: packet-x;
+  }
+}
+
+/* Scroll reveal: hidden until the section is in view (see about.tsx) */
+.reveal-root:not(.is-visible) [data-reveal] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-ring, .available-bg-gradient, .available-border-ring, .available-ping,
+  .clock-halo, .lume-dot, .impact-stat-glow, .impact-orbit, .impact-orbit-dot,
+  .impact-orbit-dot-reverse, .impact-stat-border,
+  .impact-stat-float-1, .impact-stat-float-2, .impact-stat-float-3, .impact-stat-float-4 {
+    animation: none;
   }
 }

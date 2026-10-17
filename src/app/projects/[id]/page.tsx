@@ -20,20 +20,20 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   }
 
+  // Social networks don't render SVG previews — SVG covers fall back to the
+  // site-wide generated image (src/app/opengraph-image.tsx)
+  const coverIsRaster = !project.src.toLowerCase().endsWith(".svg");
+
   return {
     title: `${project.title} | Portfolio`,
     description: project.category,
     openGraph: {
       title: project.title,
       description: project.category,
-      images: [
-        {
-          url: project.src,
-          width: 1200,
-          height: 800,
-          alt: project.title,
-        },
-      ],
+      // A page-level openGraph replaces the site-wide one, so the generated image must be listed explicitly
+      images: coverIsRaster
+        ? [{ url: project.src, width: 1200, height: 800, alt: project.title }]
+        : [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${project.title} — ${project.category}` }],
     },
   };
 }

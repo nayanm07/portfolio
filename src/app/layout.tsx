@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ElasticCursor from "@/components/ui/ElasticCursor";
 import Particles from "@/components/Particles";
@@ -9,13 +9,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Footer from "@/components/footer/footer";
 import Script from "next/script";
-import Preloader from "@/components/preloader";
 import EasterEggs from "@/components/easter-eggs";
+import ContextMenu from "@/components/aw/context-menu";
 import { config } from "@/data/config";
 import SocketContextProvider from "@/contexts/socketio";
 import RemoteCursors from "@/components/realtime/remote-cursors";
 
+// Social preview images come from src/app/opengraph-image.tsx (picked up automatically)
 export const metadata: Metadata = {
+  metadataBase: new URL(config.site),
   title: config.title,
   description: config.description.long,
   keywords: config.keywords,
@@ -24,21 +26,12 @@ export const metadata: Metadata = {
     title: config.title,
     description: config.description.short,
     url: config.site,
-    images: [
-      {
-        url: config.ogImg,
-        width: 800,
-        height: 600,
-        alt: "Portfolio preview",
-      },
-    ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: config.title,
     description: config.description.short,
-    images: [config.ogImg],
   },
   robots: {
     index: true,
@@ -46,14 +39,8 @@ export const metadata: Metadata = {
   },
 };
 
-// abcDiatype is licensed; Inter at 400/500/600 is the documented substitute.
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
+// Sans font: same stack as awrs.me ("Inter", system-ui, sans-serif — see globals.css),
+// deliberately not downloaded, so it renders identically to awrs.me (Segoe UI on Windows).
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -69,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} font-sans dark`}
+      className={`${jetbrainsMono.variable} font-sans dark`}
     >
       <head>
         <Script
@@ -90,19 +77,18 @@ export default function RootLayout({
             className="fixed inset-0 -z-10 animate-fade-in"
             quantity={100}
           /> */}
-        <Preloader>
-            {/* <SocketContextProvider> */}
-              <RemoteCursors />
-              <TooltipProvider>
-                <Header />
-                {children}
-                <Footer />
-              </TooltipProvider>
-            {/* </SocketContextProvider> */}
-            <Toaster />
-            <EasterEggs />
-            {/* <ElasticCursor /> */}
-          </Preloader>
+          {/* <SocketContextProvider> */}
+          <RemoteCursors />
+          <TooltipProvider>
+            <Header />
+            {children}
+            <Footer />
+          </TooltipProvider>
+          {/* </SocketContextProvider> */}
+          <Toaster />
+          <EasterEggs />
+          <ContextMenu />
+          {/* <ElasticCursor /> */}
         </ThemeProvider>
       </body>
     </html>

@@ -17,9 +17,11 @@ type PreloaderContextType = {
   loadingPercent: number;
   bypassLoading: () => void;
 };
+// The preloader is no longer mounted (layout.tsx), so any leftover consumers
+// of usePreloader() see a finished load instead of waiting forever.
 const INITIAL: PreloaderContextType = {
-  isLoading: true,
-  loadingPercent: 0,
+  isLoading: false,
+  loadingPercent: 100,
   bypassLoading: () => {},
 };
 export const preloaderContext = createContext<PreloaderContextType>(INITIAL);

@@ -155,7 +155,7 @@ const PROJECT_SKILLS = {
     icon: <SiPython />,
   },
   prisma: {
-    title: "prisma",
+    title: "Prisma",
     bg: "black",
     fg: "white",
     icon: <SiPrisma />,
@@ -295,7 +295,7 @@ const PROJECT_SKILLS = {
     title: "OpenAI",
     bg: "black",
     fg: "white",
-    icon: <img src="assets/icons/openai-svgrepo-com_white.svg" alt="OpenAI" />,
+    icon: <img src="/assets/icons/openai-svgrepo-com_white.svg" alt="OpenAI" />,
   },
   netlify: {
     title: "Netlify",
@@ -331,7 +331,7 @@ const PROJECT_SKILLS = {
     title: "Java",
     bg: "black",
     fg: "white",
-    icon: <img src="assets/icons/icons8-java.svg" alt="Java" />,
+    icon: <img src="/assets/icons/icons8-java.svg" alt="Java" />,
   },
   cplusplus: {
     title: "C++",
@@ -581,8 +581,8 @@ const projects: Project[] = [
   // +B2C CRM Mobile App
   {
     id: "b2ccrmarm",
-    category: "B2C CRM Mobile App",
-    title: "B2C CRM ARM",
+    category: "CRM Mobile App (B2B & B2C)",
+    title: "CRM (B2B & B2C)",
     src: "/assets/projects-screenshots/b2ccrmarm/cover.svg",
     screenshots: [],
     intigrationTechnologies: [
@@ -618,8 +618,8 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            B2C CRM ARM is an all-in-one Android and iOS CRM app for study
-            abroad and immigration consultancies. It enables counsellors,
+            This CRM is an all-in-one Android and iOS app for a study-abroad
+            team, handling both B2B and B2C leads. It enables counsellors,
             agents, and managers to manage leads, follow-ups, applications, and
             student communication in real time from mobile.
             <br />
@@ -804,8 +804,8 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            Interview AI is a multi-tenant SaaS backend that lets universities run
-            AI-powered voice interviews for prospective students — handling
+            Interview AI is a multi-tenant SaaS for study-abroad agencies, whose
+            students practise AI-powered voice mock interviews — handling
             onboarding, document verification, the interview call, AI evaluation,
             and reporting. Each client runs in its own database, governed by a
             control-plane DB.
@@ -851,17 +851,17 @@ const projects: Project[] = [
   // +Open API for Batch Calling
   {
     id: "edysorvoice",
-    category: "Open API · Batch AI Voice Calling",
-    title: "Edysor Voice",
+    category: "Voice API Platform · Public OpenAPI Layer",
+    title: "Sicada AI",
     src: "/assets/projects-screenshots/edysorvoice/cover.svg",
     screenshots: [],
     intigrationTechnologies: [
-      "External-facing REST API (ElevenLabs-style), 23+ endpoints",
-      "API-key auth (generate / validate / revoke) at the gateway",
-      "Microservices: API Gateway, User, Call, Agent, Telephony",
-      "Scheduled Calls with timezone-aware dispatch",
-      "Thin wrapper reusing the existing campaign pipeline",
-      "Backward-compatible response shapes + Postman onboarding",
+      "Public REST API of 62 endpoints in 7 groups",
+      "10+ client companies integrate their software with it",
+      "API-key issuance, management and per-request authentication",
+      "Agents, campaigns, RAG knowledge bases, phone numbers, scheduled calls",
+      "Transcripts, provider discovery (TTS / LLM / STT) and billing",
+      "Built to India's DPDP data-protection requirements",
     ],
     skills: {
       frontend: [],
@@ -878,31 +878,31 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            Edysor Voice is an external-facing REST API (similar to ElevenLabs)
-            that lets third-party developers trigger and monitor AI
-            voice-calling campaigns programmatically via API keys — 23+ endpoints
-            across agents, campaigns, conversations, scheduled calls, and
-            billing, built on a Node.js / TypeScript / Fastify microservices
-            backend.
+            Sicada AI is a voice-AI API platform. Its public REST API of 62
+            endpoints in 7 groups lets third-party software run AI voice-calling
+            campaigns programmatically — agents, campaigns, RAG knowledge bases,
+            phone numbers, scheduled calls, transcripts and billing — and is
+            10+ client companies integrate their software with it. Built on Node.js /
+            TypeScript.
             <br />
           </TypographyP>
 
           <TypographyH3 className="my-4 mt-8">Design Highlights</TypographyH3>
           <p className="font-mono mb-2">
-            1. Architected as a thin wrapper over the existing campaign pipeline
-            — reusing voice_campaigns tables instead of new infrastructure.
+            1. Designed and built the public REST API (62 endpoints in 7
+            groups) over the voice-calling platform.
             <br />
-            2. API-key authentication enforced by a gateway-level middleware
-            across all microservices.
+            2. API-key issuance, management and per-request authentication, so
+            partner software integrates without interactive login.
             <br />
-            3. Built the Scheduled Calls feature end-to-end (migration →
-            repository → service → controller → routes) with timezone-aware
-            dispatch.
+            3. Securely orchestrates external voice / telephony services behind
+            the gateway.
             <br />
-            4. Maintained backward-compatible response shapes so existing SaaS
-            clients integrated with zero breaking changes.
+            4. Endpoints built to India&apos;s DPDP data-protection
+            requirements.
             <br />
-            5. Delivered a Postman collection for external developer onboarding.
+            5. Authored a searchable developer API reference with grouped
+            endpoints and copy-ready cURL examples.
             <br />
           </p>
 
